@@ -1,0 +1,27 @@
+{
+  "name": "craigslunch",
+  "version": "1.0.0",
+  "description": "an app to help a group choose where to eat lunch together",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mollydonohue-GA/projectThree.git"
+  },
+  "author": "Team Oberyn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mollydonohue-GA/projectThree/issues"
+  },
+  "homepage": "https://github.com/mollydonohue-GA/projectThree#readme",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "cookie-parser": "^1.4.0",
+    "express": "^4.13.3",
+    "mongoose": "^4.2.6",
+    "morgan": "^1.6.1"
+  }
+}
