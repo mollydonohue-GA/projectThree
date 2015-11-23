@@ -1,8 +1,25 @@
+/*----------------------------------------------------------*/
+/*-------UNIVERSAL STYLING----------------------------------*/
+/*----------------------------------------------------------*/
 body {
   background-color: #F44336;
   font-family: 'Lato', sans-serif;
+  color: #161616
 }
 
+a {
+  text-decoration: none;
+  color: #323232;
+}
+
+a: hover {
+  text-decoration: none;
+  color: #083f46;
+}
+
+li{
+  list-style: none;
+}
 
 /*----------------------------------------------------------*/
 /*-------HEADER ELEMENTS------------------------------------*/
@@ -34,7 +51,7 @@ header {
 .slogan {
   color: #FFFFFF;
   font-family: 'Lobster Two', cursive;
-  padding: 16px 0px 0px 10%;
+  padding: 16px 0px 0px 6%;
 }
 
 .logged-in {
@@ -62,42 +79,47 @@ header {
 
 .body-container {
   position: relative;
-  top: 80px;
+  top: 65px;
   padding-left: 6%
 }
 
 .list-title{
   font-family: 'Lobster Two', cursive;
-  color: #D32F2F;
+  color: #FFFFFF;
+  text-shadow: 2px 2px #000000;
+  text-align: center;
+  margin: 0px;
 }
 /*-------chosen restaurant list-----------------------------*/
 .chosen{
   position: relative;
   display: block;
-  margin: 0px auto 20px 4%;
-  padding: 6px;
-  background-color: #FFFFFF;
-  border-radius: 10px;
+  margin: 0px 5% 20px 5%;
+  height: auto;
 }
 
 .chosen-list {
+  padding: 10px;
   border-radius: 20px;
   background-color: #FFFFFF;
+  border-radius: 10px;
+  margin-left: 2%
 }
 
 /*-------overall restaurant list----------------------------*/
 .rest{
   position: relative;
   display: block;
-  margin: 0px auto 20px auto;
-  padding: 6px;
-  background-color: #FFFFFF;
-  border-radius: 10px;
+  margin: 0px 5% 20px 0px;
+  height: auto;
 }
 
 .rest-list{
+  padding: 10px;
   border-radius: 20px;
   background-color: #FFFFFF;
+  border-radius: 10px;
+  margin-left: 2%
 }
 
 /*-----------------------------------------*/
@@ -116,15 +138,12 @@ footer{
 /*---------NEON EFFECT---------------------*/
 /*-----------------------------------------*/
 
-a {
-  text-decoration: none;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  transition: all 0.5s;
-}
 
 .logo a {
   color: #FFFFFF;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
   -webkit-animation: neon 1.5s ease-in-out infinite alternate;
   -moz-animation: neon 1.5s ease-in-out infinite alternate;
   animation: neon 1.5s ease-in-out infinite alternate;
