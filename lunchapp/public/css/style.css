@@ -1,11 +1,149 @@
 body {
-  background-color: rgb(255, 255, 245)
+  background-color: #F44336;
+  font-family: 'Lato', sans-serif;
 }
 
+
+/*----------------------------------------------------------*/
+/*-------HEADER ELEMENTS------------------------------------*/
+/*----------------------------------------------------------*/
 header {
-  background-color: rgb(222, 143, 146)
+  background-color: #181818;
+  background-image: url("../images/retro_bkgd.png");
+  position: fixed;
+  top: -70px;
+  width: 100%;
+  height: 120px;
+  border: 5px solid #D32F2F;
+  border-right-width: 0px;
+  border-left-width: 0px;
+  border-radius: 30px;
 }
 
-.container {
-  background-color: rgb(238, 233, 207)
+.head{
+  top: 62px;
+  width: 100%;
+  padding: 0px 20px 0px 20px;
 }
+
+.logo {
+  font-family: 'Warnes', cursive;
+}
+
+
+.slogan {
+  color: #FFFFFF;
+  font-family: 'Lobster Two', cursive;
+  padding: 16px 0px 0px 10%;
+}
+
+.logged-in {
+  background-color: #FFFFFF;
+  margin: 15px auto 0px auto;
+  padding-top: 2px;
+  border-radius: 40px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.whos-here {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.logout {
+  float: right;
+  margin-right: 10px;
+}
+
+/*----------------------------------------------------------*/
+/*-------BODY ELEMENTS--------------------------------------*/
+/*----------------------------------------------------------*/
+
+.body-container {
+  position: relative;
+  top: 80px;
+  padding-left: 6%
+}
+
+.list-title{
+  font-family: 'Lobster Two', cursive;
+  color: #D32F2F;
+}
+/*-------chosen restaurant list-----------------------------*/
+.chosen{
+  position: relative;
+  display: block;
+  margin: 0px auto 20px 4%;
+  padding: 6px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+
+.chosen-list {
+  border-radius: 20px;
+  background-color: #FFFFFF;
+}
+
+/*-------overall restaurant list----------------------------*/
+.rest{
+  position: relative;
+  display: block;
+  margin: 0px auto 20px auto;
+  padding: 6px;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+}
+
+.rest-list{
+  border-radius: 20px;
+  background-color: #FFFFFF;
+}
+
+/*-----------------------------------------*/
+/*---------FOOTER STYLING------------------*/
+/*-----------------------------------------*/
+
+footer{
+  display: block;
+  position: absolute;
+  bottom: 0px;
+  right: 20px
+}
+
+
+/*-----------------------------------------*/
+/*---------NEON EFFECT---------------------*/
+/*-----------------------------------------*/
+
+a {
+  text-decoration: none;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.logo a {
+  color: #FFFFFF;
+  -webkit-animation: neon 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon 1.5s ease-in-out infinite alternate;
+  animation: neon 1.5s ease-in-out infinite alternate;
+}
+
+.logo a:hover {
+  color: #00BCD4;
+  -webkit-animation: none;
+  -moz-animation: none;
+  animation: none;
+}
+
+@-webkit-keyframes neon {
+  from {
+    text-shadow: 0 0 10px #00BCD4, 0 0 20px #00BCD4, 0 0 30px #00BCD4, 0 0 40px #59c1cf, 0 0 70px #59c1cf, 0 0 80px #59c1cf, 0 0 100px #59c1cf, 0 0 150px #59c1cf;
+  }
+  to {
+    text-shadow: 0 0 5px #00BCD4, 0 0 10px #00BCD4, 0 0 15px #00BCD4, 0 0 20px #59c1cf, 0 0 35px #59c1cf, 0 0 40px #59c1cf, 0 0 50px #59c1cf, 0 0 75px #59c1cf;
+  }
+}
+
+/*---------END NEON EFFECT---------------------*/

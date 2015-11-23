@@ -3,30 +3,59 @@
   <head>
     <meta charset="utf-8">
     <title>CraigsLunch</title>
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href='https://fonts.googleapis.com/css?family=Warnes|Lato:400,700,700italic,400italic|Lobster+Two' rel='stylesheet' type='text/css'>
   </head>
   <body>
 
     <header>
-      <h3>lunch app</h3>
+
+      <div class="container head">
+        <div class="row">
+
+          <div class="four columns column logo">
+            <a href="#"><h2>LunchApp</h2></a>
+          </div>
+
+          <h6 class="four columns slogan">"Let Us Lunch."</h6>
+
+          <div class="four columns logged-in">
+            <div class="whos-here">
+              <p><strong>Joshua</strong> is logged in</p>
+            </div>
+            <div class="logout">
+              <p><strong>log out</strong></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </header>
 
-    <div class="container">
+    <div class="body-container row">
 
-      <div id="chosen-list">
-        <button>Button</button>
-      </div>
+        <div class="eleven columns chosen">
+          <h6 class="list-title">Who's lunching where?</h6><br>
+          <div class="chosen-list">
 
-      <div id="rest-list">
-        <ul>
-          <li>Thing 1</li>
-          <li>Thing 2</li>
-          <li>Thing 3</li>
-        </ul>
-      </div>
+          </div>
+        </div>
+
+        <div class="eleven columns rest">
+          <h6 class="list-title">Where should I lunch?</h6><br>
+          <div class="rest-list">
+
+          </div>
+        </div>
 
     </div>
+
+    <footer>
+      <p>Lovingly Lunched by Team Oberyn</p>
+    </footer>
 
     <script type="text/javascript" src="app.js">
     </script>
