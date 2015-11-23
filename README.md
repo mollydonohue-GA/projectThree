@@ -1,24 +1,18 @@
+### CraigsLunch - Let Us Lunch! 
+
+Our purpose: To bring order, efficiency, and community to lunch. 
+
+The team at CraigsLunch knows the lunch hour can be stressfull.
+
+* ** Where can I pre-order?
+* ** Where are other people going?
+* ** What restaurants are nearby? 
+* ** Do they deliver? 
+* ** Can someone pick up for the office?
+
+
+
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #3: Building Your Own API with AJAX
-
-### Overview
-
-You’ve already worked in small groups to accomplish various labs and exercises, but this time **we’re going to challenge you to work on a whole project with a small team.**
-
-Not only will you be asked to **exercise additional creativity** in designing your own project, your instructors will partner you with other classmates to architect, design, and collaboratively build an API of your own design.
-
-While your last project taught you how to get started with Ruby, SQL, & Ruby on Rails, this project you'll be building something exciting with **Express & Mongo & AJAX**
-
-**This is meant to push you both technically and collaboratively.** It’s a lot harder to work in a team than to work by yourself, but that's most likely you’re going to find yourself doing in your first development job after WDI, and **it's important to learn how to work together.**
-
-Make it work, and make it awesome.
-
----
-
-### Before you start coding
-
-* Have your project idea approved by an instructor
-
----
 
 ### Technical Requirements
 
