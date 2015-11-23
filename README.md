@@ -2,7 +2,7 @@
 
 ## Our purpose: To bring order, efficiency, and community to lunch. 
 
-The team at CraigsLunch knows the lunch "hour" can be stressfull.
+The team at CraigsLunch knows the lunch "hour" can be very stressfull.
 
 * Where can I pre-order?
 * Where are other people going?
@@ -10,13 +10,46 @@ The team at CraigsLunch knows the lunch "hour" can be stressfull.
 * Do they deliver? 
 * Can someone pick up for the office?
 
+CraigsLunch is simply the easiest way to coordinate the who, what, where of lunch.
+
+With your teams's Slack credentials log in to the app. 
+
+*** image of log in page *** 
+
+*** image of team / restaurant screen 
+
+--
+
+## User Story
+
+1. User first lands on a log in or sign up page
+	* if new user - user clicks on sign up and is directed to a form that asks for:
+		- name, username, and password
+	*if user is returning - user clicks on log in and enters:
+		- username and password
+
+2. Once the User is logged in they are taken to the App page. On this page the user sees:
+	* Nav Bar
+		- Name of app in left corner
+		- "user's name" logged in and the option to log out in right corner
+	* Body
+		- top section
+			* as Users choose Restaurants this section will be populated with where users are going for lunch the feed will automatically update itself. 
+		- bottom section
+			* a list of Restaurants is listed here
+				- next to each restaurant are options:
+					* pre-order
+					* delivery 
+					* eat there
+					* walk to
+
+
+
+
+
+
+
 Making lunch plans shouldn’t be harder than eating it.
-
-CraigsLunch is simply the easiest way to coordinate the who, what, where of lunch. 
-
-With your teams's Slack credentials login and 
-
-
 
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project #3: Building Your Own API with AJAX
 
