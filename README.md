@@ -1,14 +1,20 @@
-### CraigsLunch - Let Us Lunch! 
+# CraigsLunch - Let Us Lunch! 
 
-Our purpose: To bring order, efficiency, and community to lunch. 
+## Our purpose: To bring order, efficiency, and community to lunch. 
 
-The team at CraigsLunch knows the lunch hour can be stressfull.
+The team at CraigsLunch knows the lunch "hour" can be stressfull.
 
-* ** Where can I pre-order?
-* ** Where are other people going?
-* ** What restaurants are nearby? 
-* ** Do they deliver? 
-* ** Can someone pick up for the office?
+* Where can I pre-order?
+* Where are other people going?
+* What restaurants are nearby? 
+* Do they deliver? 
+* Can someone pick up for the office?
+
+Making lunch plans shouldn’t be harder than eating it.
+
+CraigsLunch is simply the easiest way to coordinate the who, what, where of lunch. 
+
+With your teams's Slack credentials login and 
 
 
 
