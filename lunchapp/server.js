@@ -26,6 +26,12 @@ app.listen(port);
 var User = require('./models/user')
 var Restaurant = require('./models/restaurant')
 
+
+///////////////////////////////////////
+// SEEDS //////////////////////////////
+///////////////////////////////////////
+
+///////////////// Wok to Walk
 var WokToWalk = new Restaurant({
   name: "Wok to Walk",
   foodType: "Asian Fusion",
@@ -36,19 +42,77 @@ var WokToWalk = new Restaurant({
   crossStreet: "South Park Ave and 17th St",
   position: {
     lat: "40.736210",
-    lng: "73.988966"
+    lng: "-73.988966"
   }
   orderOnline: true,
   seating: true,
-	whosGoing: Array
-  
+  whosGoing: []
+
 })
 
-WokToWalk.save(function(err)
+
+///////////////// OXIDO
+oxido.save(function(err)
 {
     if(err) console.log(err);
-    console.log(WokToWalk.name + "created");
+    console.log(Oxido.name + "created");
 })
+
+var oxido = new Restaurant({
+  name: "Oxido",
+  foodType: "Mexican",
+  phone: "(212) 256-1072",
+  urlRestaurant: "http://www.oxido.nyc/",
+  urlMenu: "http://www.oxido.nyc/menu/",
+  urlOnline: "https://oxido.alohaorderonline.com/",
+  crossStreet: "23rd St and 5th Ave",
+  position: {
+    lat: "40.742085",
+    lng: "-73.989918"
+  }
+  orderOnline: true,
+  seating: true,
+  whosGoing: []
+
+})
+
+oxido.save(function(err)
+{
+    if(err) console.log(err);
+    console.log(oxido.name + "created");
+})
+
+///////////////// INDIKITCH
+indikitch.save(function(err)
+{
+    if(err) console.log(err);
+    console.log(Oxido.name + "created");
+})
+
+var indikitch = new Restaurant({
+  name: "Indikitch",
+  foodType: "Indian",
+  phone: "(646) 590-7152",
+  urlRestaurant: "http://indikitch.com/",
+  urlMenu: "http://indikitch.com/menu.html",
+  urlOnline: "https://www.indikitchtogo.com/store25/restaurant.php",
+  crossStreet: "23rd St and 5th Ave",
+  position: {
+    lat: "40.742352",
+    lng: "-73.990487"
+  }
+  orderOnline: true,
+  seating: true,
+  whosGoing: []
+
+})
+
+indikitch.save(function(err)
+{
+    if(err) console.log(err);
+    console.log(indikitch.name + "created");
+})
+
 ///////////////////////////////////////
 // USER ROUTES ////////////////////////
 ///////////////////////////////////////
