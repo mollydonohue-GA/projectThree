@@ -18,6 +18,7 @@ var RestaurantSchema = new mongoose.Schema({
 	seating: boolean,
 	whosGoing: Array
 
+
 });
 
 var Restaurant = mongoose.model('Restaurant', RestaurantSchema);
