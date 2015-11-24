@@ -37,7 +37,7 @@ var WokToWalk = new Restaurant({
   position: {
     lat: "40.736210",
     lng: "73.988966"
-  }
+  },
   orderOnline: true,
   seating: true,
   whosGoing: []
@@ -60,7 +60,7 @@ var sweetgreen = new Restaurant({
   position: {
     lat: "40.745029",
     lng: "73.988622"
-  }
+  },
   orderOnline: true,
   seating: true,
   whosGoing: []
@@ -69,7 +69,7 @@ var sweetgreen = new Restaurant({
 sweetgreen.save(function(err)
 {
     if(err) console.log(err);
-    console.log(sweetgreen.name + "created");
+    console.log(sweetgreen.name + " created");
 })
 
 ///////////////////////////////////////
