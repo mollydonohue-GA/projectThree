@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var dotenv = require('dotenv').load();
 var express = require('express');
 var app = express();
@@ -31,7 +30,6 @@ app.get('/users/:food', function(req, res)
 	.then(function (data) 
 	{
 	  // console.log(data);
-	  arr.push(data);
 	  res.send(data);
 	})
 	.catch(function (err) 
