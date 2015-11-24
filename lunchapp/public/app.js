@@ -1,4 +1,4 @@
-console.log("let us lunch.");
+console.log("loaded");
 
 $(function() {
 
@@ -6,6 +6,8 @@ $(function() {
 	$('#signup-button').click(function(){ renderNewUserForm() });
 
 	$('#login-button').click(function(){ renderUserForm() });
+
+  $('#logout').hide()
 
 	$('#logout').click(function(){ Cookies.remove('loggedinId') });
 //////////////////////////////////////////////////////////////////
@@ -26,18 +28,17 @@ $(function() {
 		$formDiv.append(template);
 
 		$('#user-submit').click(function() {
-			console.log('make this new user a thing!');
-			$('#login-button').hide();
+			console.log('app.js renderNewUserForm user-submit.click');
 			createUser();
 		})
-		.html("sign up");
+		.html("Sign Me Up!");
 
 	};
 
 	// creates new user via POST route
 	var createUser = function(){
 
-		console.log('Make a new user!');
+		console.log('app.js createUser');
 
 		var first_name = $('#first_name-input').val();
 		var last_name = $('#last_name-input').val();
@@ -76,7 +77,7 @@ $(function() {
 	//render the log in form when the log in button is clicked
 	var renderUserForm = function(){
 
-		console.log("app.js clicked log in");
+		console.log("app.js renderUserForm");
 
 		var $formDiv = $('#login-div');
 
@@ -89,17 +90,17 @@ $(function() {
 		$formDiv.append(template);
 
 		$('#user-submit').click(function() {
-			console.log('app.js logn user in');
+			console.log('app.js user-submit.click');
 			loginUser();
 			})
-			.html("login");
+			.html("Log Me In!");
 
 	};
 
 	// log in via POST route
 	var loginUser = function(){
 
-		console.log('app.js welcome user');
+		console.log('app.js loginUser');
 
     var first_name = $('#first_name-input').val();
 		var last_name = $('#last_name-input').val();
@@ -114,11 +115,10 @@ $(function() {
 		}
 		$.post('/login', user)
 			.done(function(data){
-				$('#signup-button').hide();
 				$('#login-div').hide();
 			})
 			.fail(function(){
-				alert("app.js login failed " + user.username)
+				alert("app.js loginUser login failed " + user.username)
 			})
 	};
 
