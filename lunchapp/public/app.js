@@ -86,7 +86,8 @@ $(function() {
 		$formDiv.show();
 
 		$('.form').empty();
-		$('#signup-button').show();
+    $('#blurb').hide();
+		$('#signup-button').html("Wait, I need to sign up first!").show();
 
 
 		var template = Handlebars.compile($('#user-form').html());

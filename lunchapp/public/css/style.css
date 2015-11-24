@@ -74,14 +74,15 @@ header {
 }
 
 .logo {
-  font-family: 'Warnes', cursive;
+  font-family: 'Lobster', cursive;
+  /*font-family: 'Warnes', cursive;*/
 }
 
 .slogan {
   color: #FFFFFF;
   font-family: 'Lato', sans-serif;
   font-weight: 900;
-  padding: 16px 0px 0px 6%;
+  padding: 16px 0px 0px 0px;
 }
 
 .logged-in {
@@ -203,7 +204,7 @@ header {
 
 @-webkit-keyframes neon {
   from {
-    text-shadow: 0 0 5px #00BCD4, 0 0 10px #00BCD4, 0 0 20px #00BCD4, 0 0 30px #59c1cf, 0 0 40px #59c1cf, 0 0 50px #59c1cf, 0 0 60px #59c1cf, 0 0 70px #59c1cf;
+    text-shadow: 0 0 5px #00BCD4, 0 0 10px #00BCD4, 0 0 15px #00BCD4, 0 0 20px #59c1cf, 0 0 25px #59c1cf, 0 0 30px #59c1cf, 0 0 35px #59c1cf, 0 0 40px #59c1cf;
   }
   to {
     text-shadow: 0 0 2px #00BCD4, 0 0 5px #00BCD4, 0 0 7px #00BCD4, 0 0 10px #59c1cf, 0 0 13px #59c1cf, 0 0 16px #59c1cf, 0 0 19px #59c1cf, 0 0 21px #59c1cf;
