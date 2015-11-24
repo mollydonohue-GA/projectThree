@@ -1,31 +1,56 @@
-// DEPENDENCIES
-var express      = require('express'),
-    mongoose     = require('mongoose'),
-    bodyParser   = require('body-parser'),
-    md5          = require('md5'),
-    cookieParser = require('cookie-parser');
-
-var port         = process.env.PORT || 3000;
-var app          = express();
-
-// MIDDLEWARE
-app.use(bodyParser.urlencoded({ extended: false }));
+var dotenv = require('dotenv').load();
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 3000;
+var morgan = require('morgan');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var md5 = require('md5');
+var cookieParser = require('cookie-parser');
+var Yelp = require('yelp');
+app.use(morgan('dev'));
 app.use(bodyParser.json());
-
+app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static('public'));
-
 app.use(cookieParser());
+app.listen( port );
+var mongoUri =  process.env.MONGOLAB_URI || 'mongodb://localhost/lunchapp';
+mongoose.connect(mongoUri);
 
-// DATABASE
-mongoose.connect('mongodb://localhost/lunchapp');
+var yelp = new Yelp({
+  consumer_key: process.env.CONSUMER_KEY,
+  consumer_secret: process.env.CONSUMER_SECRET,
+  token: process.env.TOKEN,
+  token_secret: process.env.TOKEN_SECRET
+});
 
-// LISTENER
-app.listen(port);
+app.get('/users/:food', function(req, res)
+{
+	yelp.search({ term: req.params.food, location: '10010' })
+	.then(function (data) 
+	{
+	  // console.log(data);
+	  res.send(data);
+	})
+	.catch(function (err) 
+	{
+	  console.error(err);
+	  res.send(err);
+	});
+
+});
+
 
 // MODELS
 var User = require('./models/user')
 var Restaurant = require('./models/restaurant')
 
+
+///////////////////////////////////////
+// SEEDS //////////////////////////////
+///////////////////////////////////////
+
+///////////////// Wok to Walk
 var WokToWalk = new Restaurant({
   name: "Wok to Walk",
   foodType: "Asian Fusion",
@@ -36,7 +61,7 @@ var WokToWalk = new Restaurant({
   crossStreet: "South Park Ave and 17th St",
   position: {
     lat: "40.736210",
-    lng: "73.988966"
+    lng: "-73.988966"
   }
   orderOnline: true,
   seating: true,
@@ -70,6 +95,62 @@ sweetgreen.save(function(err)
 {
     if(err) console.log(err);
     console.log(sweetgreen.name + "created");
+})
+
+///////////////// OXIDO
+var oxido = new Restaurant({
+  name: "Oxido",
+  foodType: "Mexican",
+  phone: "(212) 256-1072",
+  urlRestaurant: "http://www.oxido.nyc/",
+  urlMenu: "http://www.oxido.nyc/menu/",
+  urlOnline: "https://oxido.alohaorderonline.com/",
+  crossStreet: "23rd St and 5th Ave",
+  position: {
+    lat: "40.742085",
+    lng: "-73.989918"
+  }
+  orderOnline: true,
+  seating: true,
+  whosGoing: []
+
+})
+
+oxido.save(function(err)
+{
+    if(err) console.log(err);
+    console.log(oxido.name + "created");
+})
+
+///////////////// INDIKITCH
+indikitch.save(function(err)
+{
+    if(err) console.log(err);
+    console.log(Oxido.name + "created");
+})
+
+var indikitch = new Restaurant({
+  name: "Indikitch",
+  foodType: "Indian",
+  phone: "(646) 590-7152",
+  urlRestaurant: "http://indikitch.com/",
+  urlMenu: "http://indikitch.com/menu.html",
+  urlOnline: "https://www.indikitchtogo.com/store25/restaurant.php",
+  crossStreet: "23rd St and 5th Ave",
+  position: {
+    lat: "40.742352",
+    lng: "-73.990487"
+  }
+  orderOnline: true,
+  seating: true,
+  whosGoing: []
+
+})
+
+indikitch.save(function(err)
+{
+    if(err) console.log(err);
+    console.log(indikitch.name + "created");
 })
 
 ///////////////////////////////////////
