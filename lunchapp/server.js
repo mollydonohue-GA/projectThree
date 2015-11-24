@@ -17,14 +17,14 @@ app.use(express.static('public'));
 app.use(cookieParser());
 
 // DATABASE
-mongoose.connect('mongodb://localhost/feels');
+mongoose.connect('mongodb://localhost/lunchapp');
 
 // LISTENER
 app.listen(port);
 
 // MODELS
 var User = require('./models/user')
-var Restaurant = require('./models/restaurant')
+// var Restaurant = require('./models/restaurant')
 
 ///////////////////////////////////////
 // USER ROUTES ////////////////////////
@@ -61,7 +61,7 @@ app.post('/users', function(req, res) {
 
 //LOG IN OLD USER
 app.post('/login', function(req, res) {
-  console.log("got past 500 error");
+  console.log("server.js - /login");
 
   var email = req.body.email;
   var password = req.body.password;
@@ -74,12 +74,12 @@ app.post('/login', function(req, res) {
     if( user != null && request_password_hash == user.password){
 
         res.cookie("loggedinId", user.id)
-        res.send("server.js - logged in")
+        res.send("server.js - /login - logged in")
 
     } else {
 
       res.status = 403;
-      res.send("server.js - didn't login")
+      res.send("server.js - /login - didn't login")
 
     }
 
