@@ -3,12 +3,23 @@
   <head>
     <meta charset="utf-8">
     <title>LunchApp</title>
+
+<!---SCRIPTS --------------------------------------------->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.js"></script>
+
+<!---CSS STYLING and FONTS ------------------------------->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Warnes|Lato:400,700,700italic,400italic|Lobster+Two' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Warnes|Lato:400,900,400italic,700' rel='stylesheet' type='text/css'>
+
   </head>
+
   <body>
+
+<!---HEADER ----------------------------------------------->
 
     <header>
 
@@ -23,10 +34,10 @@
 
           <div class="four columns logged-in">
             <div class="whos-here">
-              <p><strong><a href="#">Joshua</a></strong> is logged in</p>
+              <p><strong><a href="#">No one</a></strong> is logged in</p>
             </div>
-            <div class="logout">
-              <p><strong><a href="#">log out</a></strong></p>
+            <div class="logInAndOut">
+              <p id="logInAndOut" ><strong>Log In</strong></p>
             </div>
           </div>
 
@@ -35,41 +46,95 @@
 
     </header>
 
-    <div class="body-container row">
+    <div class="backstrip">
 
-        <div class="eleven columns chosen">
-          <h5 class="list-title">Who's lunching where?</h5>
-          <div class="chosen-list">
+      <div class="body-container row">
 
-            <ul>
-              <li>Thing 1</li>
-              <li>Thing 2</li>
-              <li>Thing 3</li>
-              <li>Thing 4</li>
-            </ul>
+  <!---LOG IN FORM -------------------------------------->
 
+        <div class="row">
+          <div id="signup" class="six columns offset-by-two login-blurb">
+            <h4>Welcome to LunchApp!</h4>
+            <p>Here is a welcome blurb written by Czar Molly.</p>
+            <button id="signup-button">sign up</a>
           </div>
         </div>
 
-        <div class="eleven columns rest">
-          <h5 class="list-title">Where should I lunch?</h5>
-          <div class="rest-list">
 
-            <ul>
-              <li>Thing 1</li>
-              <li>Thing 2</li>
-              <li>Thing 3</li>
-              <li>Thing 4</li>
-            </ul>
+          <div id="login-div">
+        		<template id="user-form">
+        			<div class="form">
 
+                <div id="names-row" class="row">
+          				<div class="two columns offset-by-two">
+          					<input type="text" id="first_name-input" placeholder="First Name">
+          				</div>
+          				<div class="two columns offset-by-two">
+          					<input type="text" id="last_name-input" placeholder="last name">
+          				</div>
+                </div>
+
+                <div class="row">
+          				<div class="two columns offset-by-two">
+          					<input type="text" id="email-input" placeholder="Email">
+          				</div>
+          				<div class="two columns offset-by-two">
+          					<input type="text" id="password-input" placeholder="password">
+          				</div>
+                </div>
+
+                <div class="two columns offset-by-two">
+                  <button id="user-submit">submit</button>
+                </div>
+
+        			</div>
+        		</template>
+        	</div>
+
+
+  <!---MAIN CONTAINER ( SHOWS AFTER LOGIN )----------------------->
+          <div id="main-div">
+            <template id="main-template">
+
+          <div class="eleven columns chosen">
+            <h5 class="list-title">Who's lunching where?</h5>
+            <div class="chosen-list">
+
+              <ul>
+                <li>Thing 1</li>
+                <li>Thing 2</li>
+                <li>Thing 3</li>
+                <li>Thing 4</li>
+              </ul>
+
+            </div>
           </div>
-        </div>
 
-    </div>
+          <div class="eleven columns rest">
+            <h5 class="list-title">Where should I lunch?</h5>
+            <div class="rest-list">
 
-    <footer>
-      <p>Lovingly Lunched at <a href="https://generalassemb.ly/" target="_blank">General Assembly</a> by Team Oberyn</p>
-    </footer>
+              <ul>
+                <li>Thing 1</li>
+                <li>Thing 2</li>
+                <li>Thing 3</li>
+                <li>Thing 4</li>
+              </ul>
+
+            </div>
+          </div>
+
+            </template>
+          </div>
+
+
+      </div>
+
+      <div class="foot">
+        <p>Lovingly Lunched at <a href="https://generalassemb.ly/" target="_blank">General Assembly</a> by Team Oberyn</p>
+      </div>
+
+    </div><!-- backstrip -->
 
     <script type="text/javascript" src="app.js">
     </script>

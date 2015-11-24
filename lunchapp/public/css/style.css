@@ -7,6 +7,25 @@ body {
   color: #161616
 }
 
+.backstrip{
+  min-height: 100vh;
+  width: 90%;
+  z-index: -4;
+  margin: 0px auto;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 100px -1px rgba(0,0,0,0.5);
+  -moz-box-shadow: 0px 0px 100px -1px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 100px -1px rgba(0,0,0,0.5);
+}
+
+h1, h2, h3, h4{
+  font-weight: 900;
+}
+
+h5, h6{
+  font-weight: 700;
+}
+
 a {
   text-decoration: none;
   color: #323232;
@@ -21,6 +40,17 @@ li{
   list-style: none;
 }
 
+button {
+  margin: 4px;
+  background-color: #00BCD4;
+  color: #161616;
+  border: 2px solid #161616;
+}
+
+input {
+  width: 200%;
+  margin-left: 4px;
+}
 /*----------------------------------------------------------*/
 /*-------HEADER ELEMENTS------------------------------------*/
 /*----------------------------------------------------------*/
@@ -47,10 +77,10 @@ header {
   font-family: 'Warnes', cursive;
 }
 
-
 .slogan {
   color: #FFFFFF;
-  font-family: 'Lobster Two', cursive;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
   padding: 16px 0px 0px 6%;
 }
 
@@ -68,10 +98,21 @@ header {
   margin-left: 10px;
 }
 
-.logout {
+.logInAndOut {
   float: right;
   margin-right: 10px;
+  cursor: pointer;
 }
+
+/*----------------------------------------------------------*/
+/*-------LOGIN ELEMENTS-------------------------------------*/
+/*----------------------------------------------------------*/
+
+.login-blurb {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
 
 /*----------------------------------------------------------*/
 /*-------BODY ELEMENTS--------------------------------------*/
@@ -80,11 +121,12 @@ header {
 .body-container {
   position: relative;
   top: 65px;
-  padding-left: 6%
+  padding-left: 6%;
 }
 
 .list-title{
-  font-family: 'Lobster Two', cursive;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
   color: #FFFFFF;
   text-shadow: 2px 2px #000000;
   text-align: center;
@@ -126,11 +168,14 @@ header {
 /*---------FOOTER STYLING------------------*/
 /*-----------------------------------------*/
 
-footer{
+.foot{
   display: block;
-  position: absolute;
-  bottom: 0px;
-  right: 20px
+  width: 90%;
+  background-color: #D32F2F;
+  position: fixed;
+  bottom: 0%;
+  text-align: center;
+  height: 30px;
 }
 
 
@@ -141,12 +186,12 @@ footer{
 
 .logo a {
   color: #FFFFFF;
-  -webkit-transition: all 0.5s;
-  -moz-transition: all 0.5s;
-  transition: all 0.5s;
-  -webkit-animation: neon 1.5s ease-in-out infinite alternate;
-  -moz-animation: neon 1.5s ease-in-out infinite alternate;
-  animation: neon 1.5s ease-in-out infinite alternate;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  transition: all 0.25s;
+  -webkit-animation: neon 1s ease-in-out infinite alternate;
+  -moz-animation: neon 1s ease-in-out infinite alternate;
+  animation: neon 1s ease-in-out infinite alternate;
 }
 
 .logo a:hover {
@@ -158,10 +203,10 @@ footer{
 
 @-webkit-keyframes neon {
   from {
-    text-shadow: 0 0 10px #00BCD4, 0 0 20px #00BCD4, 0 0 30px #00BCD4, 0 0 40px #59c1cf, 0 0 70px #59c1cf, 0 0 80px #59c1cf, 0 0 100px #59c1cf, 0 0 150px #59c1cf;
+    text-shadow: 0 0 5px #00BCD4, 0 0 10px #00BCD4, 0 0 20px #00BCD4, 0 0 30px #59c1cf, 0 0 40px #59c1cf, 0 0 50px #59c1cf, 0 0 60px #59c1cf, 0 0 70px #59c1cf;
   }
   to {
-    text-shadow: 0 0 5px #00BCD4, 0 0 10px #00BCD4, 0 0 15px #00BCD4, 0 0 20px #59c1cf, 0 0 35px #59c1cf, 0 0 40px #59c1cf, 0 0 50px #59c1cf, 0 0 75px #59c1cf;
+    text-shadow: 0 0 2px #00BCD4, 0 0 5px #00BCD4, 0 0 7px #00BCD4, 0 0 10px #59c1cf, 0 0 13px #59c1cf, 0 0 16px #59c1cf, 0 0 19px #59c1cf, 0 0 21px #59c1cf;
   }
 }
 
