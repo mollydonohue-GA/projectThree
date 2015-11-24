@@ -1,55 +1,144 @@
-console.log("works");
+console.log("loaded");
 
-$(function()
-{
-  $("#sign-up").click(function()
-  {
-    console.log('before ajax');
-    $.ajax(
-    {
-      url: 'http://localhost:3000/users',
-      method: 'GET',
-      dataType: 'json'
-    }).done(renderUser);
-  });
-  
+$(function() {
+
+	//make the buttons clicky
+	$('#signup-button').click(function(){ renderNewUserForm() });
+
+  $('#logInAndOut').html("Log In").click(function(){ renderLogInForm() });
 
 
-  var renderUser = function(data) 
-  {
-    console.log('check data: ', data);
-    // console.log("ajax has completed bc I'm rendering instructors");
 
-    // Gotta make sure the right thing is showing and the wrong things aren't
-    // Try commenting this stuff out and watch what happens...yuck
-    var resultDiv = $("#form-container");
-    resultDiv.empty();
-    // $('#new-instructor-link').show();
-    // $('#new-complaint-link').hide();
-    // $('#form-container').empty();
-    // $("body").empty();
+//////////////////////////////////////////////////////////////////
+////////////////////SIGN UP///////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 
-    // Let's set up Handlebars and compile so all this templating isn't happening server side, but client!\
-    var source = $("#status-template").html();
-    var template = Handlebars.compile(source);
+	//render the sign up form when the signup button is clicked
+	var renderNewUserForm = function(){
 
-    console.log(data.total);
+		var $formDiv = $('#login-div');
 
-    resultDiv.append(template(data.total));
+		$formDiv.show();
+		$('.form').empty();
+		$('#signup-button').hide();
+		var template = Handlebars.compile($('#user-form').html());
 
-    // for(var i=0;i<data.length;i++) 
-    // {
-    //   // $("body").append(data);
-    //   // console.log(data.length);
-    //   // $("body").append(data.length);
-    //   resultDiv.append(template(data[i]));
-    // }
+		$formDiv.append(template);
 
-    // $('.edit-instructor').click(function(){
-    //  var $id = $(this).parent().attr("data-id");
-    //  console.log('editting instructors!')
-    //  editInstructor($id);
-    // });
-  }
+		$('#user-submit').click(function() {
+			console.log('app.js renderNewUserForm user-submit.click');
+			createUser();
+		})
+		.html("Sign Me Up!");
 
-});
+	};
+
+	// creates new user via POST route
+	var createUser = function(){
+
+		console.log('app.js createUser');
+
+		var first_name = $('#first_name-input').val();
+		var last_name = $('#last_name-input').val();
+    var email = $('#email-input').val();
+		var password = $('#password-input').val();
+
+		var user = {
+      first_name: first_name,
+      last_name: last_name,
+			email: email,
+			password: password
+		}
+		$.post('/users', user)
+			.done(newUser);
+
+	};
+
+	//welcome a new user after creation
+	var newUser = function(data){
+
+		$('#login-div').hide();
+
+		var template = Handlebars.compile($('#template').html());
+
+		$('#MAIN CONTAINER').append(template(data))
+
+		//get dat cookie
+		user = Cookies.get();
+
+    //NEED TO TURN THIS INTO A LOG OUT CLICK LATER ON
+    	// $('#logInAndOut').click(function(){ Cookies.remove('loggedinId') });
+
+
+	};
+
+//////////////////////////////////////////////////////////////////
+////////////////////LOG IN////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
+
+	//render the log in form when the log in button is clicked
+	var renderLogInForm = function(){
+
+		console.log("app.js renderLogInForm");
+
+		var $formDiv = $('#login-div');
+
+		$formDiv.show();
+
+		$('.form').empty();
+		$('#signup-button').show();
+
+
+		var template = Handlebars.compile($('#user-form').html());
+		$formDiv.append(template);
+
+    $('#names-row').hide();
+
+    $('#user-submit').click(function() {
+			console.log('app.js user-submit.click');
+			loginUser();
+			})
+			.html("Log Me In!");
+
+	};
+
+	// log in via POST route
+	var loginUser = function(){
+
+		console.log('app.js loginUser');
+
+    var email = $('#email-input').val();
+		var password = $('#password-input').val();
+
+    var user = {
+			email: email,
+			password: password
+		}
+		$.post('/login', user)
+			.done(function(data){
+				$('#login-div').hide();
+			})
+			.fail(function(){
+				alert("app.js loginUser login failed " + user.username)
+			})
+	};
+
+	//welcome a user after logging in
+	var returningUser = function(data){
+
+		//get dat cookie
+		user = getCookie();
+
+		$('#login-div').hide();
+
+		var template = Handlebars.compile($('#template').html());
+
+		$('#users').append(template(data))
+
+    //NEED TO TURN THIS INTO A LOG OUT CLICK LATER ON
+    	// $('#logInAndOut').click(function(){ Cookies.remove('loggedinId') });
+
+	}
+
+}); //end of everything
+
