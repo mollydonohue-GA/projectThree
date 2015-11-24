@@ -40,7 +40,7 @@ var WokToWalk = new Restaurant({
   }
   orderOnline: true,
   seating: true,
-
+  whosGoing: []
 })
 
 WokToWalk.save(function(err)
@@ -48,6 +48,30 @@ WokToWalk.save(function(err)
     if(err) console.log(err);
     console.log(WokToWalk.name + "created");
 })
+
+var sweetgreen = new Restaurant({
+  name: "sweetgreen",
+  foodType: "salads",
+  phone: "646-449-8884",
+  urlRestaurant: "http://sweetgreen.com/",
+  urlMenu: "https://order.sweetgreen.com/nomad/menu",
+  urlOnline: "https://order.sweetgreen.com/nomad/menu",
+  crossStreet: "Broadway and 27th St",
+  position: {
+    lat: "40.745029",
+    lng: "73.988622"
+  }
+  orderOnline: true,
+  seating: true,
+  whosGoing: []
+})
+
+sweetgreen.save(function(err)
+{
+    if(err) console.log(err);
+    console.log(sweetgreen.name + "created");
+})
+
 ///////////////////////////////////////
 // USER ROUTES ////////////////////////
 ///////////////////////////////////////

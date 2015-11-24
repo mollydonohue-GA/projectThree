@@ -15,7 +15,7 @@ var RestaurantSchema = new mongoose.Schema({
 	}
 	orderOnline: boolean,
 	seating: boolean,
-
+	whosGoing: Array
 
 
 });
