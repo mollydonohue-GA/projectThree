@@ -56,7 +56,7 @@ var WokToWalk = new Restaurant({
   position: {
     lat: "40.736210",
     lng: "73.988966"
-  }
+  },
   orderOnline: true,
   seating: true,
   whosGoing: []
@@ -79,7 +79,7 @@ var schnippers = new Restaurant({
   position: {
     lat: "40.740857",
     lng: "-73.987458"
-  }
+  },
   orderOnline: true,
   seating: true,
   whosGoing: []
@@ -102,7 +102,7 @@ var berryDeli = new Restaurant({
   position: {
     lat: "40.739870",
     lng: "-73.989318"
-  }
+  },
   orderOnline: false,
   seating: false,
   whosGoing: []
