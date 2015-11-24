@@ -40,7 +40,8 @@ var WokToWalk = new Restaurant({
   }
   orderOnline: true,
   seating: true,
-
+	whosGoing: Array
+  
 })
 
 WokToWalk.save(function(err)
