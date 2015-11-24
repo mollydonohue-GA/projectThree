@@ -51,124 +51,124 @@ var Restaurant = require('./models/restaurant')
 ///////////////////////////////////////
 
 ///////////////// Wok to Walk
-var WokToWalk = new Restaurant({
-  name: "Wok to Walk",
-  foodType: "Asian Fusion",
-  phone: "646-918-7006",
-  urlRestaurant: "http://woktowalk.com/",
-  urlMenu: "http://woktowalk.com/our-menu/",
-  urlOnline: "http://woktowalk.com/union-square-east-order-line/",
-  crossStreet: "South Park Ave and 17th St",
-  position: {
-    lat: "40.736210",
-    lng: "73.988966"
-  },
-  orderOnline: true,
-  seating: true,
-  whosGoing: []
-});
+// var WokToWalk = new Restaurant({
+//   name: "Wok to Walk",
+//   foodType: "Asian Fusion",
+//   phone: "646-918-7006",
+//   urlRestaurant: "http://woktowalk.com/",
+//   urlMenu: "http://woktowalk.com/our-menu/",
+//   urlOnline: "http://woktowalk.com/union-square-east-order-line/",
+//   crossStreet: "South Park Ave and 17th St",
+//   position: {
+//     lat: "40.736210",
+//     lng: "73.988966"
+//   },
+//   orderOnline: true,
+//   seating: true,
+//   whosGoing: []
+// });
 
 
-///////////////// OXIDO
-WokToWalk.save(function(err)
-{
-    if(err) console.log(err);
-    console.log(WokToWalk.name + "created");
-})
+// ///////////////// OXIDO
+// WokToWalk.save(function(err)
+// {
+//     if(err) console.log(err);
+//     console.log(WokToWalk.name + "created");
+// })
 
-var oxido = new Restaurant({
-  name: "Oxido",
-  foodType: "Mexican",
-  phone: "(212) 256-1072",
-  urlRestaurant: "http://www.oxido.nyc/",
-  urlMenu: "http://www.oxido.nyc/menu/",
-  urlOnline: "https://oxido.alohaorderonline.com/",
-  crossStreet: "23rd St and 5th Ave",
-  position: {
-    lat: "40.742085",
-    lng: "-73.989918"
-  },
-  orderOnline: true,
-  seating: true,
-  whosGoing: []
+// var oxido = new Restaurant({
+//   name: "Oxido",
+//   foodType: "Mexican",
+//   phone: "(212) 256-1072",
+//   urlRestaurant: "http://www.oxido.nyc/",
+//   urlMenu: "http://www.oxido.nyc/menu/",
+//   urlOnline: "https://oxido.alohaorderonline.com/",
+//   crossStreet: "23rd St and 5th Ave",
+//   position: {
+//     lat: "40.742085",
+//     lng: "-73.989918"
+//   },
+//   orderOnline: true,
+//   seating: true,
+//   whosGoing: []
 
-});
+// });
 
-oxido.save(function(err)
-{
-    if(err) console.log(err);
-    console.log(oxido.name + "created");
-});
+// oxido.save(function(err)
+// {
+//     if(err) console.log(err);
+//     console.log(oxido.name + "created");
+// });
 
-var schnippers = new Restaurant({
-  name: "Schnipper’s Quality Kitchen",
-  foodType: "American",
-  phone: "(212) 233-1025",
-  urlRestaurant: "http://www.schnippers.com/",
-  urlMenu: "http://www.schnippers.com/menus/Schnippers_Menu_23rd_Madison_2015.pdf",
-  urlOnline: "https://www.schnipperstogo.com/store23/restaurant.php",
-  crossStreet: "23rd St & Madison Ave.",
-  position: {
-    lat: "40.740857",
-    lng: "-73.987458"
-  },
-  orderOnline: true,
-  seating: true,
-  whosGoing: []
-});
+// var schnippers = new Restaurant({
+//   name: "Schnipper’s Quality Kitchen",
+//   foodType: "American",
+//   phone: "(212) 233-1025",
+//   urlRestaurant: "http://www.schnippers.com/",
+//   urlMenu: "http://www.schnippers.com/menus/Schnippers_Menu_23rd_Madison_2015.pdf",
+//   urlOnline: "https://www.schnipperstogo.com/store23/restaurant.php",
+//   crossStreet: "23rd St & Madison Ave.",
+//   position: {
+//     lat: "40.740857",
+//     lng: "-73.987458"
+//   },
+//   orderOnline: true,
+//   seating: true,
+//   whosGoing: []
+// });
 
-schnippers.save(function(err)
-{
-    if(err) console.log(err);
-    console.log(schnippers.name + "created");
-});
+// schnippers.save(function(err)
+// {
+//     if(err) console.log(err);
+//     console.log(schnippers.name + "created");
+// });
 
-var berryDeli = new Restaurant({
-  name: "21 Berry Deli Inc.",
-  foodType: "Deli",
-  phone: "(212) 353-8540",
-  urlRestaurant: "",
-  urlMenu: "",
-  urlOnline: "",
-  crossStreet: "Broadway & 21st St.",
-  position: {
-    lat: "40.739870",
-    lng: "-73.989318"
-  },
-  orderOnline: false,
-  seating: false,
-  whosGoing: []
-});
+// var berryDeli = new Restaurant({
+//   name: "21 Berry Deli Inc.",
+//   foodType: "Deli",
+//   phone: "(212) 353-8540",
+//   urlRestaurant: "",
+//   urlMenu: "",
+//   urlOnline: "",
+//   crossStreet: "Broadway & 21st St.",
+//   position: {
+//     lat: "40.739870",
+//     lng: "-73.989318"
+//   },
+//   orderOnline: false,
+//   seating: false,
+//   whosGoing: []
+// });
 
-berryDeli.save(function(err)
-{
-    if(err) console.log(err);
-    console.log(berryDeli.name + "created");
-});
+// berryDeli.save(function(err)
+// {
+//     if(err) console.log(err);
+//     console.log(berryDeli.name + "created");
+// });
 
-///////////////// INDIKITCH
-var indikitch = new Restaurant({
-  name: "Indikitch",
-  foodType: "Indian",
-  phone: "(646) 590-7152",
-  urlRestaurant: "http://indikitch.com/",
-  urlMenu: "http://indikitch.com/menu.html",
-  urlOnline: "https://www.indikitchtogo.com/store25/restaurant.php",
-  crossStreet: "23rd St and 5th Ave",
-  position: {
-    lat: "40.742352",
-    lng: "-73.990487"
-  },
-  orderOnline: true,
-  seating: true,
-  whosGoing: []
-});
+// ///////////////// INDIKITCH
+// var indikitch = new Restaurant({
+//   name: "Indikitch",
+//   foodType: "Indian",
+//   phone: "(646) 590-7152",
+//   urlRestaurant: "http://indikitch.com/",
+//   urlMenu: "http://indikitch.com/menu.html",
+//   urlOnline: "https://www.indikitchtogo.com/store25/restaurant.php",
+//   crossStreet: "23rd St and 5th Ave",
+//   position: {
+//     lat: "40.742352",
+//     lng: "-73.990487"
+//   },
+//   orderOnline: true,
+//   seating: true,
+//   whosGoing: []
+// });
 
-indikitch.save(function(err)
-{
-    if(err) console.log(err);
-    console.log(indikitch.name + "created");
-});
+// indikitch.save(function(err)
+// {
+//     if(err) console.log(err);
+//     console.log(indikitch.name + "created");
+// });
 ///////////////////////////////////////
 // USER ROUTES ////////////////////////
 ///////////////////////////////////////
