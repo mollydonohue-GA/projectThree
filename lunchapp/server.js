@@ -59,15 +59,60 @@ var WokToWalk = new Restaurant({
   }
   orderOnline: true,
   seating: true,
-	whosGoing: Array
-  
-})
+  whosGoing: []
+});
 
 WokToWalk.save(function(err)
 {
     if(err) console.log(err);
     console.log(WokToWalk.name + "created");
-})
+});
+
+var schnippers = new Restaurant({
+  name: "Schnipper’s Quality Kitchen",
+  foodType: "American",
+  phone: "(212) 233-1025",
+  urlRestaurant: "http://www.schnippers.com/",
+  urlMenu: "http://www.schnippers.com/menus/Schnippers_Menu_23rd_Madison_2015.pdf",
+  urlOnline: "https://www.schnipperstogo.com/store23/restaurant.php",
+  crossStreet: "23rd St & Madison Ave.",
+  position: {
+    lat: "40.740857",
+    lng: "-73.987458"
+  }
+  orderOnline: true,
+  seating: true,
+  whosGoing: []
+});
+
+schnippers.save(function(err)
+{
+    if(err) console.log(err);
+    console.log(schnippers.name + "created");
+});
+
+var berryDeli = new Restaurant({
+  name: "21 Berry Deli Inc.",
+  foodType: "Deli",
+  phone: "(212) 353-8540",
+  urlRestaurant: "",
+  urlMenu: "",
+  urlOnline: "",
+  crossStreet: "Broadway & 21st St.",
+  position: {
+    lat: "40.739870",
+    lng: "-73.989318"
+  }
+  orderOnline: false,
+  seating: false,
+  whosGoing: []
+});
+
+berryDeli.save(function(err)
+{
+    if(err) console.log(err);
+    console.log(berryDeli.name + "created");
+});
 ///////////////////////////////////////
 // USER ROUTES ////////////////////////
 ///////////////////////////////////////
