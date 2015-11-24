@@ -8,7 +8,7 @@ var RestaurantSchema = new mongoose.Schema({
 	urlRestaurant: String,
 	urlMenu: String,
 	urlOnline: String,
-	crossStreat: String,
+	crossStreet: String,
 	position: {
 		lat: Number,
 		lng: Number
