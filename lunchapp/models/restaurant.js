@@ -5,7 +5,7 @@ var RestaurantSchema = new mongoose.Schema({
 
 	name: String,
 	foodType: String,
-	phone: Number,
+	phone: String,
 	urlRestaurant: String,
 	urlMenu: String,
 	urlOnline: String,

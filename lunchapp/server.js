@@ -73,7 +73,7 @@ var Restaurant = require('./models/restaurant')
 // WokToWalk.save(function(err)
 // {
 //     if(err) console.log(err);
-//     console.log(WokToWalk.name + "created");
+//     console.log(WokToWalk.name + " created");
 // })
 
 // var oxido = new Restaurant({
@@ -97,7 +97,7 @@ var Restaurant = require('./models/restaurant')
 // oxido.save(function(err)
 // {
 //     if(err) console.log(err);
-//     console.log(oxido.name + "created");
+//     console.log(oxido.name + " created");
 // });
 
 // var schnippers = new Restaurant({
@@ -120,7 +120,7 @@ var Restaurant = require('./models/restaurant')
 // schnippers.save(function(err)
 // {
 //     if(err) console.log(err);
-//     console.log(schnippers.name + "created");
+//     console.log(schnippers.name + " created");
 // });
 
 // var berryDeli = new Restaurant({
@@ -167,8 +167,11 @@ var Restaurant = require('./models/restaurant')
 // indikitch.save(function(err)
 // {
 //     if(err) console.log(err);
-//     console.log(indikitch.name + "created");
+//     console.log(indikitch.name + " created");
 // });
+
+
+
 ///////////////////////////////////////
 // USER ROUTES ////////////////////////
 ///////////////////////////////////////
