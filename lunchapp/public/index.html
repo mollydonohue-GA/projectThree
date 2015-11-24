@@ -1,0 +1,78 @@
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <!-- <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="normalize.css"> -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.4/handlebars.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <title>Lunching</title>
+
+</head>
+<body>
+    <h1>Lunch</h1>
+
+
+
+    <button id="sign-up">Sign up!</button><br>
+    <button id="slack">Slack Login!</button>
+    <button id="login">Login!</button><br>
+
+
+    <template id="status-template">
+        <h3 id="status"></h3>
+    </template>
+
+    <div id="form-container"></div>
+
+<!-- LOGIN ============= -->
+    <template id="login-template">
+
+        <div id="login-container" data-id="{{_id}}">
+            <input type="text" id="username" placeholder="username"/><br>
+            <input type="text" id="password" placeholder="password"/><br>
+            <button id="login-button" data-id="{{_id}}">Login!</button>
+        </div>
+
+    </template>
+
+<!--  NEW USER ============= -->
+    <template id="signup-template">
+
+        <div id="signup-container" data-id="{{_id}}">
+            <input type="text" id="username" placeholder="username"/><br>
+            <input type="text" id="password" placeholder="password"/><br>
+            <!-- <input type="text" id="secret1" placeholder="log your secret"/>
+            <input type="text" id="secret2" placeholder="log another"/> -->
+            <button id="register" data-id="{{_id}}">Register!</button>
+        </div>
+
+    </template>
+
+<!--  NEW WISH ============= -->
+    <template id="new-wish-template">
+
+        <div id="new_wish-container" data-id="{{_id}}">
+            <input type="text" id="wish" placeholder="make a wish"/><br>
+            <!-- <input type="text" id="secret1" placeholder="log your secret"/>
+            <input type="text" id="secret2" placeholder="log another"/> -->
+            <button id="make-wish" data-id="{{_id}}">Create Order!</button>
+        </div>
+
+    </template>
+
+
+
+
+
+
+    <button id="logout">Logout</button>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
