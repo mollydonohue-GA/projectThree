@@ -43,8 +43,31 @@ app.get('/users/:food', function(req, res)
 
 // MODELS
 var User = require('./models/user')
-// var Restaurant = require('./models/restaurant')
+var Restaurant = require('./models/restaurant')
 
+var WokToWalk = new Restaurant({
+  name: "Wok to Walk",
+  foodType: "Asian Fusion",
+  phone: "646-918-7006",
+  urlRestaurant: "http://woktowalk.com/",
+  urlMenu: "http://woktowalk.com/our-menu/",
+  urlOnline: "http://woktowalk.com/union-square-east-order-line/",
+  crossStreet: "South Park Ave and 17th St",
+  position: {
+    lat: "40.736210",
+    lng: "73.988966"
+  }
+  orderOnline: true,
+  seating: true,
+	whosGoing: Array
+  
+})
+
+WokToWalk.save(function(err)
+{
+    if(err) console.log(err);
+    console.log(WokToWalk.name + "created");
+})
 ///////////////////////////////////////
 // USER ROUTES ////////////////////////
 ///////////////////////////////////////
@@ -119,7 +142,7 @@ app.get('/restaurants', function(req, res){
 
   if (req.cookies.loggedinId != undefined){
 
-    res.send("STUFF")
+    res.send()
 
   } else {
 
