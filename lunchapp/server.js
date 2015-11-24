@@ -1,26 +1,45 @@
-// DEPENDENCIES
-var express      = require('express'),
-    mongoose     = require('mongoose'),
-    bodyParser   = require('body-parser'),
-    md5          = require('md5'),
-    cookieParser = require('cookie-parser');
-
-var port         = process.env.PORT || 3000;
-var app          = express();
-
-// MIDDLEWARE
-app.use(bodyParser.urlencoded({ extended: false }));
+var dotenv = require('dotenv').load();
+var express = require('express');
+var app = express();
+var port = process.env.PORT || 3000;
+var morgan = require('morgan');
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
+var md5 = require('md5');
+var cookieParser = require('cookie-parser');
+var Yelp = require('yelp');
+app.use(morgan('dev'));
 app.use(bodyParser.json());
-
+app.use(bodyParser.urlencoded({ extended: false}));
 app.use(express.static('public'));
-
 app.use(cookieParser());
+app.listen( port );
+var mongoUri =  process.env.MONGOLAB_URI || 'mongodb://localhost/lunchapp';
+mongoose.connect(mongoUri);
 
-// DATABASE
-mongoose.connect('mongodb://localhost/lunchapp');
+var yelp = new Yelp({
+  consumer_key: process.env.CONSUMER_KEY,
+  consumer_secret: process.env.CONSUMER_SECRET,
+  token: process.env.TOKEN,
+  token_secret: process.env.TOKEN_SECRET
+});
 
-// LISTENER
-app.listen(port);
+app.get('/users/:food', function(req, res)
+{
+	yelp.search({ term: req.params.food, location: '10010' })
+	.then(function (data) 
+	{
+	  // console.log(data);
+	  res.send(data);
+	})
+	.catch(function (err) 
+	{
+	  console.error(err);
+	  res.send(err);
+	});
+
+});
+
 
 // MODELS
 var User = require('./models/user')
