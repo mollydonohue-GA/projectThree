@@ -5,11 +5,10 @@ $(function() {
 	//make the buttons clicky
 	$('#signup-button').click(function(){ renderNewUserForm() });
 
-	$('#login-button').click(function(){ renderUserForm() });
+  $('#logInAndOut').html("Log In").click(function(){ renderLogInForm() });
 
-  $('#logout').hide()
 
-	$('#logout').click(function(){ Cookies.remove('loggedinId') });
+
 //////////////////////////////////////////////////////////////////
 ////////////////////SIGN UP///////////////////////////////////////
 //////////////////////////////////////////////////////////////////
@@ -21,7 +20,6 @@ $(function() {
 
 		$formDiv.show();
 		$('.form').empty();
-		$('#login-button').show();
 		$('#signup-button').hide();
 		var template = Handlebars.compile($('#user-form').html());
 
@@ -68,6 +66,10 @@ $(function() {
 		//get dat cookie
 		user = Cookies.get();
 
+    //NEED TO TURN THIS INTO A LOG OUT CLICK LATER ON
+    	// $('#logInAndOut').click(function(){ Cookies.remove('loggedinId') });
+
+
 	};
 
 //////////////////////////////////////////////////////////////////
@@ -75,21 +77,24 @@ $(function() {
 //////////////////////////////////////////////////////////////////
 
 	//render the log in form when the log in button is clicked
-	var renderUserForm = function(){
+	var renderLogInForm = function(){
 
-		console.log("app.js renderUserForm");
+		console.log("app.js renderLogInForm");
 
 		var $formDiv = $('#login-div');
 
 		$formDiv.show();
+
 		$('.form').empty();
-		$('#login-button').hide();
 		$('#signup-button').show();
+
 
 		var template = Handlebars.compile($('#user-form').html());
 		$formDiv.append(template);
 
-		$('#user-submit').click(function() {
+    $('#names-row').hide();
+
+    $('#user-submit').click(function() {
 			console.log('app.js user-submit.click');
 			loginUser();
 			})
@@ -102,14 +107,10 @@ $(function() {
 
 		console.log('app.js loginUser');
 
-    var first_name = $('#first_name-input').val();
-		var last_name = $('#last_name-input').val();
     var email = $('#email-input').val();
 		var password = $('#password-input').val();
 
     var user = {
-      first_name: first_name,
-      last_name: last_name,
 			email: email,
 			password: password
 		}
@@ -133,6 +134,9 @@ $(function() {
 		var template = Handlebars.compile($('#template').html());
 
 		$('#users').append(template(data))
+
+    //NEED TO TURN THIS INTO A LOG OUT CLICK LATER ON
+    	// $('#logInAndOut').click(function(){ Cookies.remove('loggedinId') });
 
 	}
 

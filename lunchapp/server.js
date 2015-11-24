@@ -63,8 +63,6 @@ app.post('/users', function(req, res) {
 app.post('/login', function(req, res) {
   console.log("got past 500 error");
 
-  var first_name = req.body.first_name;
-  var last_name = req.body.last_name;
   var email = req.body.email;
   var password = req.body.password;
 
@@ -90,6 +88,8 @@ app.post('/login', function(req, res) {
 });
 
 //LOG OUT
+
+//NEED A LOG OUT ROUTE?!?!?!
 
 ///////////////////////////////////////
 // RESTAURANT ROUTES //////////////////

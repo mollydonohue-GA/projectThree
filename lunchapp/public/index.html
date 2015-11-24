@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Warnes|Lato:400,700,700italic,400italic|Lobster+Two' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Warnes|Lato:400,900,400italic,700' rel='stylesheet' type='text/css'>
 
   </head>
 
@@ -36,8 +36,8 @@
             <div class="whos-here">
               <p><strong><a href="#">No one</a></strong> is logged in</p>
             </div>
-            <div id="logout" class="logout">
-              <p><strong><a href="#">log out</a></strong></p>
+            <div class="logInAndOut">
+              <p id="logInAndOut" ><strong>Log In</strong></p>
             </div>
           </div>
 
@@ -53,9 +53,10 @@
   <!---LOG IN FORM -------------------------------------->
 
         <div class="row">
-          <div id="logInAndOut" class="six columns offset-by-two logInAndOut">
+          <div id="signup" class="six columns offset-by-two login-blurb">
+            <h4>Welcome to LunchApp!</h4>
+            <p>Here is a welcome blurb written by Czar Molly.</p>
             <button id="signup-button">sign up</a>
-            <button id="login-button">log in</a>
           </div>
         </div>
 
@@ -64,7 +65,7 @@
         		<template id="user-form">
         			<div class="form">
 
-                <div class="row">
+                <div id="names-row" class="row">
           				<div class="two columns offset-by-two">
           					<input type="text" id="first_name-input" placeholder="First Name">
           				</div>
@@ -92,7 +93,10 @@
 
 
   <!---MAIN CONTAINER ( SHOWS AFTER LOGIN )----------------------->
-          <!-- <div class="eleven columns chosen">
+          <div id="main-div">
+            <template id="main-template">
+
+          <div class="eleven columns chosen">
             <h5 class="list-title">Who's lunching where?</h5>
             <div class="chosen-list">
 
@@ -118,7 +122,11 @@
               </ul>
 
             </div>
-          </div> -->
+          </div>
+
+            </template>
+          </div>
+
 
       </div>
 
@@ -126,7 +134,7 @@
         <p>Lovingly Lunched at <a href="https://generalassemb.ly/" target="_blank">General Assembly</a> by Team Oberyn</p>
       </div>
 
-    </div>
+    </div><!-- backstrip -->
 
     <script type="text/javascript" src="app.js">
     </script>
