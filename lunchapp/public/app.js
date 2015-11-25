@@ -142,4 +142,3 @@ $(function() {
 	}
 
 }); //end of everything
-
