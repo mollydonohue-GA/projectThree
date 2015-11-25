@@ -118,6 +118,9 @@ $(function() {
 		$.post('/login', user)
 			.done(function(data){
 				$('#login-div').hide();
+        $('#logInAndOut').html("Logout").click(function(){ Cookies.remove('loggedinId') });
+        returningUser(data);
+        // restaurantList;
 			})
 			.fail(function(){
 				alert("app.js loginUser login failed " + user.username)
@@ -141,5 +144,28 @@ $(function() {
 
 	}
 
+  var restaurantList = function()
+  {
+    $.ajax({
+      url: 'http://localhost:3000/restaurants',
+      method: 'GET',
+      dataType: 'json'
+    }).done(renderRestaurants);
+  }
+
+  var renderRestaurants = function(data)
+  {
+    append rest-list to main-div
+    var template = Handlebars.compile($(".rest-list").html());
+
+    $("#main-div").append(template(data));
+  }
+
 }); //end of everything
+
+
+
+
+
+
 

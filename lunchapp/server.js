@@ -246,7 +246,10 @@ app.get('/restaurants', function(req, res){
 
   if (req.cookies.loggedinId != undefined){
 
-    res.send()
+    Restaurant.find({}, function(err, rest)
+    {
+    	res.send(rest);
+    });
 
   } else {
 
@@ -255,3 +258,15 @@ app.get('/restaurants', function(req, res){
   }
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
