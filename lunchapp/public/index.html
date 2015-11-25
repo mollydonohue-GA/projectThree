@@ -34,7 +34,7 @@
 
           <div class="four columns logged-in">
             <div class="whos-here">
-              <p><strong><a href="#">No one</a></strong> is logged in</p>
+              <p><strong id="loggedInUser">No one</strong> is logged in</p>
             </div>
             <div class="logInAndOut">
               <p id="logInAndOut" ><strong>Log In</strong></p>
@@ -52,7 +52,7 @@
 
   
 
-        <div class="row">
+        <div id="pre-login" class="row">
           <div id="signup" class="six columns offset-by-two login-blurb">
             <div id="blurb">
               <h4>Welcome to LunchApp!</h4>
@@ -82,7 +82,7 @@
           					<input type="text" id="email-input" placeholder="Email">
           				</div>
           				<div class="two columns offset-by-two">
-          					<input type="text" id="password-input" placeholder="password">
+          					<input type="password" id="password-input" placeholder="password">
           				</div>
                 </div>
 

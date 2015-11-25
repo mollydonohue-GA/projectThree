@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-// var ComplaintSchema = require('./complaint').schema;
 
 var RestaurantSchema = new mongoose.Schema({
 
@@ -13,11 +12,10 @@ var RestaurantSchema = new mongoose.Schema({
 	position: {
 		lat: Number,
 		lng: Number
-		},
+	},
 	orderOnline: Boolean,
 	seating: Boolean,
 	whosGoing: Array
-
 });
 
 var Restaurant = mongoose.model('Restaurant', RestaurantSchema);
