@@ -5,7 +5,7 @@ $(function() {
 	//make the buttons clicky
 	$('#signup-button').click(function(){ renderNewUserForm() });
 
-  $('#logInAndOut').html("Log In").click(function(){ renderLogInForm() });
+  $('#logInAndOut').click(function(){ renderLogInForm() });
 
 
 
@@ -57,20 +57,21 @@ $(function() {
 	//welcome a new user after creation
 	var newUser = function(data){
 
+    $('#login-div').hide();
+    $('#pre-login').hide();
+    $('#logInAndOut').html("Log Out").click(function(){ Cookies.remove('loggedinId') });
+
 		$('#login-div').hide();
 
-		var template = Handlebars.compile($('#template').html());
+    $.get('/restaurants', data)
+			.done(function(data){
 
-		$('#MAIN CONTAINER').append(template(data))
+    		var template = Handlebars.compile($('#main-template').html());
 
-		//get dat cookie
-		user = Cookies.get();
+    		$('#main-div').append(template(data))
 
-    //NEED TO TURN THIS INTO A LOG OUT CLICK LATER ON
-    	// $('#logInAndOut').click(function(){ Cookies.remove('loggedinId') });
-
-
-	};
+	   })
+   };
 
 //////////////////////////////////////////////////////////////////
 ////////////////////LOG IN////////////////////////////////////////
@@ -117,29 +118,32 @@ $(function() {
 		}
 		$.post('/login', user)
 			.done(function(data){
-				$('#login-div').hide();
+        returningUser();
 			})
 			.fail(function(){
 				alert("app.js loginUser login failed " + user.username)
 			})
+
 	};
 
 	//welcome a user after logging in
 	var returningUser = function(data){
 
+    $('#login-div').hide();
+    $('#pre-login').hide();
+    $('#logInAndOut').html("Log Out").click(function(){ Cookies.remove('loggedinId') });
+
 		//get dat cookie
-		user = getCookie();
+		// var user = getCookie();
 
-		$('#login-div').hide();
+    $.get('/restaurants', data)
+			.done(function(data){
 
-		var template = Handlebars.compile($('#template').html());
+    		var template = Handlebars.compile($('#main-template').html());
 
-		$('#users').append(template(data))
+    		$('#main-div').append(template(data))
 
-    //NEED TO TURN THIS INTO A LOG OUT CLICK LATER ON
-    	// $('#logInAndOut').click(function(){ Cookies.remove('loggedinId') });
-
-	}
+	   })
+  }
 
 }); //end of everything
-
