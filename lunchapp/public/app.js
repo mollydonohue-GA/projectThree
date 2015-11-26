@@ -2,6 +2,13 @@ console.log("loaded");
 
 $(function() {
 
+	// var mongoose = require('mongoose');
+
+	// mongoose.connect('mongodb://localhost/lunchapp');
+
+	// var User = require('./models/user');
+	// var Restaurant = require('./models/restaurant');
+
 	//make the buttons clicky
 	$('#signup-button').click(function(){ renderNewUserForm() });
 
@@ -110,7 +117,7 @@ $(function() {
 		console.log('app.js loginUser');
 
     var email = $('#email-input').val();
-		var password = $('#password-input').val();
+	var password = $('#password-input').val();
 
     var user = {
 			email: email,
@@ -118,9 +125,7 @@ $(function() {
 		}
 		$.post('/login', user)
 			.done(function(data){
-				$('#login-div').hide();
-        $('#logInAndOut').html("Logout").click(function(){ Cookies.remove('loggedinId') });
-        returningUser();
+        returningUser(user);
 			})
 			.fail(function(){
 				alert("app.js loginUser login failed " + user.username)
@@ -134,6 +139,15 @@ $(function() {
     $('#login-div').hide();
     $('#pre-login').hide();
     $('#logInAndOut').html("Log Out").click(function(){ Cookies.remove('loggedinId') });
+   
+    // console.log(data.email);
+
+    $.get('/users/' + data.email, data)
+    	.done(function(data)
+    	{
+    		$('#loggedInUser').html(data.first_name);
+    		// console.log(data.first_name);
+    	})
 
 		//get dat cookie
 		// var user = getCookie();
@@ -141,29 +155,16 @@ $(function() {
     $.get('/restaurants', data)
 			.done(function(data){
 
+			console.log(data);
+
     		var template = Handlebars.compile($('#main-template').html());
 
-    		$('#main-div').append(template(data))
+    		// for(var i = 0; i < data.length; i++)
+    		// {
+    			$('#main-div').append(template(data));
+    		// }
 
 	   })
   }
 
-  // var restaurantList = function()
-  // {
-  //   $.ajax({
-  //     url: 'http://localhost:3000/restaurants',
-  //     method: 'GET',
-  //     dataType: 'json'
-  //   }).done(renderRestaurants);
-  // }
-
-  // var renderRestaurants = function(data)
-  // {
-  //   append rest-list to main-div
-  //   var template = Handlebars.compile($(".rest-list").html());
-
-  //   $("#main-div").append(template(data));
-  // }
-
 }); //end of everything
-

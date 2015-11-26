@@ -263,7 +263,7 @@ app.post('/users', function(req, res) {
 
   password_hash = md5(req.body.password);
 
-	var user = new User({
+  var user = new User({
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email: req.body.email,
@@ -271,19 +271,19 @@ app.post('/users', function(req, res) {
   });
 
   user.save(function(err) {
-		if(err) {
-			console.log(err);
-		} else {
+    if(err) {
+      console.log(err);
+    } else {
 
       res.cookie("loggedinId", user.id)
 
-			res.send({
+      res.send({
         id: user.id,
         username: user.username,
 
       });
-		};
-	});
+    };
+  });
 });
 
 
@@ -314,6 +314,14 @@ app.post('/login', function(req, res) {
 
 });
 
+app.get('/users/:email', function(req, res)
+{
+  User.findOne({ 'email': req.params.email }, function(err, user)
+  {
+    res.send(user);
+  });
+});
+
 //LOG OUT
 
 //NEED A LOG OUT ROUTE?!?!?!
@@ -325,30 +333,19 @@ app.post('/login', function(req, res) {
 // GET ROUTE
 app.get('/restaurants', function(req, res){
 
-  if (req.cookies.loggedinId != undefined)
-  {
+  if (req.cookies.loggedinId != undefined){
+
     console.log("server.js - get /restaurants - worked");
     Restaurant.find( function( err, restaurant)
     {
-    	res.send(restaurant)
-  	})
-  } 
-  else {
+      res.send(restaurant)
+    });
+
+  } else {
 
     res.send("NO STUFF FOR YOU")
 
   }
 
 });
-
-
-
-
-
-
-
-
-
-
-
 
