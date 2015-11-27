@@ -58,11 +58,60 @@ var Restaurant = require('./models/restaurant')
 // SEEDS //////////////////////////////
 ///////////////////////////////////////
 
-///////////////// SCHNIPPERS
+///////////////// Wok to Walk
+// var WokToWalk = new Restaurant({
+//   name: "Wok to Walk",
+//   foodType: "Asian Fusion",
+//   phone: "646-918-7006",
+//   urlRestaurant: "http://woktowalk.com/",
+//   urlMenu: "http://woktowalk.com/our-menu/",
+//   urlOnline: "http://woktowalk.com/union-square-east-order-line/",
+//   crossStreet: "South Park Ave and 17th St",
+//   position: {
+//     lat: "40.736210",
+//     lng: "73.988966"
+//   },
+//   orderOnline: true,
+//   seating: true,
+//   whosGoing: []
+// });
+
+
+// ///////////////// OXIDO
+// WokToWalk.save(function(err)
+// {
+//     if(err) console.log(err);
+//     console.log(WokToWalk.name + " created");
+// })
+
+// var oxido = new Restaurant({
+//   name: "Oxido",
+//   foodType: "Mexican",
+//   phone: "(212) 256-1072",
+//   urlRestaurant: "http://www.oxido.nyc/",
+//   urlMenu: "http://www.oxido.nyc/menu/",
+//   urlOnline: "https://oxido.alohaorderonline.com/",
+//   crossStreet: "23rd St and 5th Ave",
+//   position: {
+//     lat: "40.742085",
+//     lng: "-73.989918"
+//   },
+//   orderOnline: true,
+//   seating: true,
+//   whosGoing: []
+
+// });
+
+// oxido.save(function(err)
+// {
+//     if(err) console.log(err);
+//     console.log(oxido.name + " created");
+// });
+
 // var schnippers = new Restaurant({
 //   name: "Schnipper’s Quality Kitchen",
 //   foodType: "American",
-//   phone: "2122331025",
+//   phone: "(212) 233-1025",
 //   urlRestaurant: "http://www.schnippers.com/",
 //   urlMenu: "http://www.schnippers.com/menus/Schnippers_Menu_23rd_Madison_2015.pdf",
 //   urlOnline: "https://www.schnipperstogo.com/store23/restaurant.php",
@@ -75,18 +124,17 @@ var Restaurant = require('./models/restaurant')
 //   seating: true,
 //   whosGoing: []
 // });
-//
+
 // schnippers.save(function(err)
 // {
 //     if(err) console.log(err);
 //     console.log(schnippers.name + " created");
 // });
-//
-// ///////////////// 21 BERRY
+
 // var berryDeli = new Restaurant({
-//   name: "21 Berry Deli",
+//   name: "21 Berry Deli Inc.",
 //   foodType: "Deli",
-//   phone: "2123538540",
+//   phone: "(212) 353-8540",
 //   urlRestaurant: "",
 //   urlMenu: "",
 //   urlOnline: "",
@@ -99,13 +147,14 @@ var Restaurant = require('./models/restaurant')
 //   seating: false,
 //   whosGoing: []
 // });
-//
+
 // berryDeli.save(function(err)
 // {
 //     if(err) console.log(err);
 //     console.log(berryDeli.name + "created");
 // });
-//
+
+
 // ///////////////// Wok to Walk
 // var WokToWalk = new Restaurant({
 //   name: "Wok to Walk",
@@ -179,11 +228,12 @@ var Restaurant = require('./models/restaurant')
 //     console.log(oxido.name + "created");
 // })
 //
+
 // ///////////////// INDIKITCH
 // var indikitch = new Restaurant({
 //   name: "Indikitch",
 //   foodType: "Indian",
-//   phone: "6465907152",
+//   phone: "(646) 590-7152",
 //   urlRestaurant: "http://indikitch.com/",
 //   urlMenu: "http://indikitch.com/menu.html",
 //   urlOnline: "https://www.indikitchtogo.com/store25/restaurant.php",
@@ -195,14 +245,14 @@ var Restaurant = require('./models/restaurant')
 //   orderOnline: true,
 //   seating: true,
 //   whosGoing: []
-//
-// })
-//
+// });
+
 // indikitch.save(function(err)
 // {
 //     if(err) console.log(err);
-//     console.log(indikitch.name + "created");
-// })
+//     console.log(indikitch.name + " created");
+// });
+
 
 ///////////////////////////////////////
 // USER ROUTES ////////////////////////
@@ -213,7 +263,7 @@ app.post('/users', function(req, res) {
 
   password_hash = md5(req.body.password);
 
-	var user = new User({
+  var user = new User({
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     email: req.body.email,
@@ -221,19 +271,19 @@ app.post('/users', function(req, res) {
   });
 
   user.save(function(err) {
-		if(err) {
-			console.log(err);
-		} else {
+    if(err) {
+      console.log(err);
+    } else {
 
       res.cookie("loggedinId", user.id)
 
-			res.send({
+      res.send({
         id: user.id,
         username: user.username,
 
       });
-		};
-	});
+    };
+  });
 });
 
 
@@ -264,6 +314,14 @@ app.post('/login', function(req, res) {
 
 });
 
+app.get('/users/:email', function(req, res)
+{
+  User.findOne({ 'email': req.params.email }, function(err, user)
+  {
+    res.send(user);
+  });
+});
+
 //LOG OUT
 
 //NEED A LOG OUT ROUTE?!?!?!
@@ -278,9 +336,10 @@ app.get('/restaurants', function(req, res){
   if (req.cookies.loggedinId != undefined){
 
     console.log("server.js - get /restaurants - worked");
-    Restaurant.find( function( err, restaurant){
-    res.send(restaurant)
-  })
+    Restaurant.find( function( err, restaurant)
+    {
+      res.send(restaurant)
+    });
 
   } else {
 
@@ -289,3 +348,4 @@ app.get('/restaurants', function(req, res){
   }
 
 });
+
