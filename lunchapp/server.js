@@ -264,9 +264,6 @@ app.post('/login', function(req, res) {
 
 });
 
-//LOG OUT
-
-//NEED A LOG OUT ROUTE?!?!?!
 
 ///////////////////////////////////////
 // RESTAURANT ROUTES //////////////////
