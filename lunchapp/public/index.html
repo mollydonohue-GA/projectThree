@@ -84,31 +84,36 @@
 
 
   <!---MAIN CONTAINER ( SHOWS AFTER LOGIN )----------------------->
-          <div id="main-div">
-            <template id="main-template">
+          <div id="first-div">
+            <template id="first-template">
               <div class="eleven columns chosen">
                 <h5 class="list-title">Who's lunching where?</h5>
                 <div class="chosen-list">
-                  <ul>
-                    <li>Thing 1</li>
-                    <li>Thing 2</li>
-                    <li>Thing 3</li>
-                    <li>Thing 4</li>
+                  <ul id="stuff">
+                    
                   </ul>
                 </div>
               </div>
+            </template>
+          </div>
+          <div id="second-div">
+            <template id="second-template">
               <div class="eleven columns rest">
                 <h5 class="list-title">Where should I lunch?</h5>
                 <div class="rest-list">
                   <ul id="restaurants">
                     {{#each this}}
-                      <li>{{this.name}}</li>
+                      <li>
+                        {{this.name}}
+                        <button class="order" data_id="{{_id}}" >Order Now!</button>
+                      </li>
                     {{/each}}
                   </ul>
                 </div>
               </div>
             </template>
           </div>
+          
       </div>
       <!-- <div class="foot">
         <p>Lovingly Lunched at <a href="https://generalassemb.ly/" target="_blank">General Assembly</a> by Team Oberyn</p>
