@@ -134,37 +134,60 @@ $(function() {
 	};
 
 	//welcome a user after logging in
-	var returningUser = function(data){
+	var returningUser = function(data)
+	{
 
-    $('#login-div').hide();
-    $('#pre-login').hide();
-    $('#logInAndOut').html("Log Out").click(function(){ Cookies.remove('loggedinId') });
-   
-    // console.log(data.email);
+	    $('#login-div').hide();
+	    $('#pre-login').hide();
+	    $('#logInAndOut').html("Log Out").click(function(){ Cookies.remove('loggedinId') });
+	   
+	    // console.log(data.email);
 
-    $.get('/users/' + data.email, data)
-    	.done(function(data)
-    	{
-    		$('#loggedInUser').html(data.first_name);
-    		// console.log(data.first_name);
-    	})
+	    // var name = "";
 
-		//get dat cookie
-		// var user = getCookie();
+	    $.get('/users/' + data.email, data)
+	    	.done(function(data)
+	    	{
+	    		$('#loggedInUser').html(data.first_name);
+	    		// console.log(data.first_name);
+	    		// name = data.first_name;
+	    	})
 
-    $.get('/restaurants', data)
-			.done(function(data){
+			//get dat cookie
+			// var user = getCookie();
+			// console.log(name);
 
-			console.log(data);
+	    $.get('/restaurants', data)
+			.done(function(data)
+			{
+				console.log(data);
 
-    		var template = Handlebars.compile($('#main-template').html());
+	    		var template = Handlebars.compile($('#second-template').html());
 
-    		// for(var i = 0; i < data.length; i++)
-    		// {
-    			$('#main-div').append(template(data));
-    		// }
+	    		$('#second-div').append(template(data));
 
-	   })
-  }
+	    		var template = Handlebars.compile($('#first-template').html());
+
+	    		$('#first-div').append(template(data));
+
+	    		$('.order').click(function()
+	    			{ 
+	    				// console.log($(this).attr("data_id"));
+	    				$.get('/restaurants/' + $(this).attr("data_id"), data)
+	    					.done(function(data)
+	    					{
+	    						// console.log(data);
+	    						var ul = $('#stuff');
+	    						var li = "<li>"+data[0].name+"- "+data[1].first_name+" is going</li>";
+
+	    						ul.append(li);
+
+	    						
+	    					})
+	    			});
+			})
+
+		// console.log($("#5654dacb79b17f69917614e3"));
+  	}
 
 }); //end of everything
