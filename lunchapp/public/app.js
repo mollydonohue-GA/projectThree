@@ -1,6 +1,10 @@
 console.log("loaded");
 
+var initialize = function(){
+
 $(function() {
+
+
 
 	// var mongoose = require('mongoose');
 
@@ -139,7 +143,7 @@ $(function() {
     $('#login-div').hide();
     $('#pre-login').hide();
     $('#logInAndOut').html("Log Out").click(function(){ Cookies.remove('loggedinId') });
-   
+
     // console.log(data.email);
 
     $.get('/users/' + data.email, data)
@@ -155,7 +159,7 @@ $(function() {
     $.get('/restaurants', data)
 			.done(function(data){
 
-			console.log(data);
+			console.log("app.js - returningUser - /get - " + data);
 
     		var template = Handlebars.compile($('#main-template').html());
 
@@ -164,7 +168,33 @@ $(function() {
     			$('#main-div').append(template(data));
     		// }
 
+          data.forEach( function (r){
+
+            var map_id = ("'" + r._id + "-rest-map'");
+
+            // let's try to put some maps on this site//////////////////////////
+            var map = new google.maps.Map(document.getElementById(map_id), {
+              log: console.log(r.position.lat, r.position.lng),
+              zoom: 16,
+              streetViewControl: false,
+              mapTypeControl: false,
+              center: new google.maps.LatLng(r.position.lat, r.position.lng),
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            })
+
+            var marker = new google.maps.Marker({
+              map: map,
+              position: {lat: r.position.lat, lng: r.position.lat},
+              title: r.name
+            });
+
+        })
+
 	   })
   }
 
 }); //end of everything
+
+}
+
+google.maps.event.addDomListener(window, 'load', initialize) //jk
