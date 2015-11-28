@@ -331,7 +331,8 @@ app.get('/users/:email', function(req, res)
 ///////////////////////////////////////
 
 // GET ROUTE
-app.get('/restaurants', function(req, res){
+app.get('/restaurants', function(req, res)
+{
 
   if (req.cookies.loggedinId != undefined){
 
@@ -346,6 +347,21 @@ app.get('/restaurants', function(req, res){
     res.send("NO STUFF FOR YOU")
 
   }
+
+});
+
+app.get('/restaurants/:id', function(req, res)
+{
+  Restaurant.findOne({ '_id': req.params.id}, function(err, rest)
+  {
+    // res.send([rest, req.cookies.loggedinId]);
+    User.findOne({ '_id': req.cookies.loggedinId }, function(err, user)
+    {
+      res.send([rest, user]);
+    });
+  });
+
+
 
 });
 
