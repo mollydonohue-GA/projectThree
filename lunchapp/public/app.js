@@ -140,7 +140,7 @@ $(function() {
 	    $('#login-div').hide();
 	    $('#pre-login').hide();
 	    $('#logInAndOut').html("Log Out").click(function(){ Cookies.remove('loggedinId') });
-	   
+
 	    // console.log(data.email);
 
 	    // var name = "";
@@ -162,27 +162,29 @@ $(function() {
 			{
 				console.log(data);
 
-	    		var template = Handlebars.compile($('#second-template').html());
+	    		var templateRest = Handlebars.compile($('#second-template').html());
 
-	    		$('#second-div').append(template(data));
+	    		$('#second-div').append(templateRest(data));
 
-	    		var template = Handlebars.compile($('#first-template').html());
-
-	    		$('#first-div').append(template(data));
 
 	    		$('.order').click(function()
-	    			{ 
+	    			{
 	    				// console.log($(this).attr("data_id"));
 	    				$.get('/restaurants/' + $(this).attr("data_id"), data)
 	    					.done(function(data)
 	    					{
-	    						// console.log(data);
-	    						var ul = $('#stuff');
-	    						var li = "<li>"+data[0].name+"- "+data[0].whosGoing+" is going</li>";
 
-	    						ul.append(li);
+                  var templateChosen = Handlebars.compile($('#first-template').html());
 
-	    						
+                  $('#first-div').append(templateChosen(data));
+
+	    						// // console.log(data);
+	    						// var ul = $('#stuff');
+	    						// var li = "<li>" + data[0].name + " - " + data[0].whosGoing + " is going</li>";
+                  //
+	    						// ul.append(li);
+
+
 	    					})
 	    			});
 			})
