@@ -139,7 +139,12 @@ $(function() {
 
 	    $('#login-div').hide();
 	    $('#pre-login').hide();
-	    $('#logInAndOut').html("Log Out").click(function(){ Cookies.remove('loggedinId') });
+	    $('#logInAndOut').html("Log Out").click(function(){ 
+	    	Cookies.remove('loggedinId')
+	    	
+	  //   	.$('#second-div').hide(),
+			// .$('#first-div').hide(),
+		});
 
 	    // console.log(data.email);
 
@@ -192,3 +197,4 @@ $(function() {
   	}
 
 }); //end of everything
+
