@@ -61,7 +61,7 @@
                     <input type="text" id="first_name-input" placeholder="First Name">
                   </div>
                   <div class="two columns offset-by-two">
-                    <input type="text" id="last_name-input" placeholder="last name">
+                    <input type="text" id="last_name-input" placeholder="Last Name">
                   </div>
                 </div>
 
@@ -90,7 +90,7 @@
                 <h5 class="list-title">Who's lunching where?</h5>
                 <div class="chosen-list">
                   <ul id="stuff">
-                    
+
                   </ul>
                 </div>
               </div>
@@ -103,17 +103,37 @@
                 <div class="rest-list">
                   <ul id="restaurants">
                     {{#each this}}
-                      <li>
-                        {{this.name}}
-                        <button class="order" data_id="{{_id}}" >Order Now!</button>
-                      </li>
+                    <li>
+                         <div class="row single-rest">
+                           <div class="five columns">
+                             <a href="{{this.urlRestaurant}}" target="_blank" ><h4>{{this.name}}</h4></a>
+                           </div>
+                           <div class="four columns">
+                             <button class="order" data_id="{{_id}}">I want {{this.name}} for lunch</button>
+                           </div>
+                         </div>
+                         <div class="row single-rest">
+                           <div class="five columns">
+                             <h6>{{this.foodType}}</h6><br>
+                             <h5>{{this.crossStreet}}</h5>
+                           </div>
+                           <div class="five columns">
+                             <a href="{{this.urlMenu}}" target="_blank" title="Menu"><img src="images/menu.svg"></a>
+                             <a href="{{this.urlOnline}}" target="_blank" title="Order Online"><img src="images/order_online.svg"></a>
+                             <a href="#" target="_blank" title="{{this.phone}}"><img src="images/order_phone.svg"></a>
+                           </div>
+                           <div id="{{this._id}}-rest-map" class="two columns rest-map"></div>
+                         </div>
+                         <hr>
+                       </li>
+
                     {{/each}}
                   </ul>
                 </div>
               </div>
             </template>
           </div>
-          
+
       </div>
       <!-- <div class="foot">
         <p>Lovingly Lunched at <a href="https://generalassemb.ly/" target="_blank">General Assembly</a> by Team Oberyn</p>
