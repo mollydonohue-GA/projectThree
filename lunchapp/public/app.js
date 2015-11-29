@@ -166,6 +166,9 @@ $(function() {
 
 	    		$('#second-div').append(templateRest(data));
 
+          var templateChosen = Handlebars.compile($('#first-template').html());
+
+          $('#first-div').append(templateChosen(data));
 
 	    		$('.order').click(function()
 	    			{
@@ -174,15 +177,11 @@ $(function() {
 	    					.done(function(data)
 	    					{
 
-                  var templateChosen = Handlebars.compile($('#first-template').html());
+	    						// console.log(data);
+	    						var ul = $('#stuff');
+	    						var li = "<li>" + data[0].name + " - " + data[0].whosGoing + " is going</li>";
 
-                  $('#first-div').append(templateChosen(data));
-
-	    						// // console.log(data);
-	    						// var ul = $('#stuff');
-	    						// var li = "<li>" + data[0].name + " - " + data[0].whosGoing + " is going</li>";
-                  //
-	    						// ul.append(li);
+	    						ul.append(li);
 
 
 	    					})
