@@ -352,14 +352,19 @@ app.get('/restaurants', function(req, res)
 
 app.get('/restaurants/:id', function(req, res)
 {
-  Restaurant.findOne({ '_id': req.params.id}, function(err, rest)
-  {
+  // Restaurant.findOne({ '_id': req.params.id}, function(err, rest)
+  // {
     // res.send([rest, req.cookies.loggedinId]);
     User.findOne({ '_id': req.cookies.loggedinId }, function(err, user)
     {
-      res.send([rest, user]);
+      // res.send([rest, user]);
+      Restaurant.findOneAndUpdate({ '_id': req.params.id}, { '$push': { 'whosGoing': user.first_name } }, function(err, rest)
+      {
+        res.send([rest, user]);
+      });
+
     });
-  });
+  // });
 
 
 
