@@ -178,7 +178,7 @@ $(function() {
 	    					{
 	    						// console.log(data);
 	    						var ul = $('#stuff');
-	    						var li = "<li>"+data[0].name+"- "+data[1].first_name+" is going</li>";
+	    						var li = "<li>"+data[0].name+"- "+data[0].whosGoing+" is going</li>";
 
 	    						ul.append(li);
 
