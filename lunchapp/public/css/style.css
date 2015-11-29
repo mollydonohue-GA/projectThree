@@ -7,7 +7,7 @@ body {
   color: #161616
 }
 
-.backstrip{
+/*.backstrip{
   min-height: 100vh;
   width: 90%;
   z-index: -4;
@@ -16,7 +16,7 @@ body {
   -webkit-box-shadow: 0px 0px 100px -1px rgba(0,0,0,0.5);
   -moz-box-shadow: 0px 0px 100px -1px rgba(0,0,0,0.5);
   box-shadow: 0px 0px 100px -1px rgba(0,0,0,0.5);
-}
+}*/
 
 h1, h2, h3, h4{
   font-weight: 900;
@@ -51,6 +51,13 @@ input {
   width: 200%;
   margin-left: 4px;
 }
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
 /*----------------------------------------------------------*/
 /*-------HEADER ELEMENTS------------------------------------*/
 /*----------------------------------------------------------*/
@@ -133,7 +140,6 @@ header {
   text-align: center;
   margin: 0px;
 }
-
 /*-------chosen restaurant list-----------------------------*/
 .chosen{
   position: relative;
@@ -147,7 +153,9 @@ header {
   border-radius: 20px;
   background-color: #FFFFFF;
   border-radius: 10px;
-  margin-left: 2%
+  margin-left: 2%;
+  overflow: scroll;
+  max-height: 40vh;
 }
 
 /*-------overall restaurant list----------------------------*/
@@ -163,7 +171,31 @@ header {
   border-radius: 20px;
   background-color: #FFFFFF;
   border-radius: 10px;
-  margin-left: 2%
+  margin-left: 2%;
+  overflow: scroll;
+  max-height: 40vh;
+}
+
+.single-rest img{
+  height: 75px;
+  margin-right: 20px;
+}
+
+.single-rest h5, h6{
+  margin: 0px;
+}
+
+
+/*-----map styling ----------*/
+.rest-map{
+  border: 3px solid #212121;
+  position: relative;
+  top: -40px;
+  border-radius: 10px;
+  margin: 0 auto;
+  width: 125px;
+  height: 125px;
+  background-color: papayawhip;
 }
 
 /*-----------------------------------------*/
