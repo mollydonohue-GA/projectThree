@@ -55,6 +55,30 @@ $(function() {
 
 	};
 
+	//welcome a new user after creation
+	var newUser = function(data){
+
+    	$('#login-div').hide();
+    	$('#pre-login').hide();
+    	$('#logInAndOut').html("Log Out").click(function(){
+    		Cookies.remove('loggedinId');
+    		$('#logInAndOut').html("Log In");
+    		$('#loggedInUser').html("No one");
+    	});
+
+
+		$('#login-div').hide();
+
+    	$.get('/restaurants', data)
+			.done(function(data){
+
+    			var template = Handlebars.compile($('#main-template').html());
+
+    			$('#main-div').append(template(data))
+
+	   		})
+   };
+
 //////////////////////////////////////////////////////////////////
 ////////////////////LOG IN////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
@@ -66,8 +90,8 @@ $(function() {
 
 		var $formDiv = $('#login-div');
 
-		$("#first-div").hide();
-		$("#second-div").hide();
+		$("#first-div").empty();
+		$("#second-div").empty();
 
 		$formDiv.show();
 
@@ -79,13 +103,13 @@ $(function() {
 		var template = Handlebars.compile($('#user-form').html());
 		$formDiv.append(template);
 
-    $('#names-row').hide();
+    	$('#names-row').hide();
 
-    $('#user-submit').click(function() {
+    	$('#user-submit').click(function()
+    	{
 			console.log('app.js user-submit.click');
 			loginUser();
-			})
-			.html("Log Me In!");
+		}).html("Log Me In!");
 
 	};
 
@@ -97,19 +121,19 @@ $(function() {
     var email = $('#email-input').val();
 	  var password = $('#password-input').val();
 
-    var user = {
+    	var user = {
 			email: email,
 			password: password,
 		}
 		$.post('/login', user)
 			.done(function(data){
-        returningUser(user);
+        		returningUser(user);
 			})
 			.fail(function(){
 				alert("app.js loginUser login failed " + user.username)
 			})
-
 	};
+
 /////////////////////////////////////////////////////////////////////////
 //welcome a user after logging in////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////
@@ -117,149 +141,168 @@ $(function() {
 
     console.log('returning user data.id = ' + data.id);
 
-	    $('#login-div').hide();
-	    $('#pre-login').hide();
-	    $('#logInAndOut').html("Log Out").click(function(){
-	    	$('#logInAndOut').html("Log In");
-	    	$('#loggedInUser').html("No one");
-        $('#signup-button').show()
+    $('#login-div').hide();
+    $('#pre-login').hide();
+
+    $('#logInAndOut').html("Log Out").click(function(){
+
+    	$('#logInAndOut').html("Log In");
+    	$('#loggedInUser').html("No one");
+      $('#signup-button').show()
 		});
 
-	    if($('#logInAndOut').html() === "Log Out"){
-	    	// console.log("It is now Log out");
-	    	$('#second-div').show();
-			  $('#first-div').show();
+    if($('#logInAndOut').html() === "Log Out"){
+    	// console.log("It is now Log out");
+    	$('#second-div').show();
+		  $('#first-div').show();
+    };
+    // console.log(data.email);
 
-      }
-	    // console.log(data.email);
+    // var name = "";
+    // set name via email
+    $.get('/users/email/' + data.email, data)
+    	.done(function(data){
+    		$('#loggedInUser').html(data.first_name);
+    		// console.log(data.first_name);
+    		// name = data.first_name;
+    	})
 
-	    // var name = "";
-      // set name via email
-	    $.get('/users/email/' + data.email, data)
-	    	.done(function(data){
-	    		$('#loggedInUser').html(data.first_name);
-	    		// console.log(data.first_name);
-	    		// name = data.first_name;
-	    	})
+    //set name via _id
+    $.get('/users/id/' + data.id, data)
+      .done(function(data){
+        console.log("data =" + data);
+        $('#loggedInUser').html(data.first_name);
+        // console.log(data.first_name);
+        // name = data.first_name;
+      })
 
-      //set name via _id
-      $.get('/users/id/' + data.id, data)
-        .done(function(data){
-          console.log("data =" + data);
-          $('#loggedInUser').html(data.first_name);
-          // console.log(data.first_name);
-          // name = data.first_name;
+    $.get('/restaurants', data)
+		.done(function(data){
+
+  		var templateRest = Handlebars.compile($('#second-template').html());
+
+  		$('#second-div').append(templateRest(data[0]));
+
+  		// console.log(data[0][1]._id);
+
+      var templateChosen = Handlebars.compile($('#first-template').html());
+
+  		$('#first-div').append(templateChosen(data[1]));
+
+  		console.log(data[0].id);
+
+	    // var li = "<li>"+data[0].name+"- "+$.each(data[0].whosGoing, function(index, value){ (data[0].whosGoing[index] + ", ") })+" is going</li>";
+
+	    var ul = $('#stuff');
+	    var count = 0;
+	    for(key in data[1]){
+	    	if (data[1][key].length > 0){
+					// alert(key + " -> " + p[key]);
+					// console.log(data[1][key].length);
+					var li = "<li id=\""+data[0][count]._id+"\">"+key+":- ";
+					for(var i = 0; i < data[1][key].length; i++){
+						// console.log(data[1][key][i]);
+						if(i === data[1][key].length - 1){
+							li += data[1][key][i] ;
+						} else {
+							li += data[1][key][i] + ", ";
+						}
+					}
+
+					li += " is going!</li>";
+
+					ul.append(li);
+
+					count++;
+				}
+	    }
+
+    		// let's try to put some maps on this site//////////////////////////
+  		var initialize = function(){
+
+        var map = new google.maps.Map(document.getElementById('rest-map'), {
+          zoom: 16,
+          streetViewControl: false,
+          mapTypeControl: false,
+          center: new google.maps.LatLng(40.741921, -73.988999),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
         })
 
-
-			//get dat cookie
-			// var user = getCookie();
-			// console.log(name);
-
-	    $.get('/restaurants', data)
-			.done(function(data){
-
-	    		var templateRest = Handlebars.compile($('#second-template').html());
-
-	    		$('#second-div').append(templateRest(data));
-
-          var templateChosen = Handlebars.compile($('#first-template').html());
-
-          $('#first-div').append(templateChosen(data));
-
-        // let's try to put a map on this site//////////////////////////
-        var initialize = function(){
-
-          var map = new google.maps.Map(document.getElementById('rest-map'), {
-            zoom: 16,
-            streetViewControl: false,
-            mapTypeControl: false,
-            center: new google.maps.LatLng(40.741921, -73.988999),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
+        data.forEach( function (r){
+          var marker = new google.maps.Marker(
+          {
+            map: map,
+            // position: {lat: r.position.lat, lng: r.position.lng},
+            title: r.name
           })
+        })
+		  }
 
-          data.forEach( function (r){
+      initialize();
 
-            var marker = new google.maps.Marker({
-              map: map,
-              position: {lat: r.position.lat, lng: r.position.lng},
-              title: r.name
-            });
+    	$('.order').click(function(){
+    		// console.log($(this).attr("data_id"));
+        $('#clear-chosen').show()
 
-          });
+    		$.get('/restaurants/' + $(this).attr("data_id"), data)
+    			.done(function(data){
+    		    $('#chosen-welcome').hide();
 
-        }
+    				// console.log(data);
+    				var ul = $('#stuff');
 
-        // google.maps.event.addDomListener(window, 'load', initialize)
+    				$("#"+data[0]._id).remove()
 
-        initialize()
+    				var li = "<li><h6>"+data[0].name+"</h6><p>"+$.each(data[0].whosGoing, function(index, value){ (data[0].whosGoing[index] + ", ") })+" is going<p></li>";
 
-    		$('.order').click(function(){
-    				// console.log($(this).attr("data_id"));
-
-            $('#clear-chosen').show()
-
-    				$.get('/restaurants/' + $(this).attr("data_id"), data)
-    					.done(function(data)
-    					{
-                $('#chosen-welcome').hide();
-
-    						// console.log(data);
-    						var ul = $('#stuff');
-
-    						var li = "<li><h6>"+data[0].name+"</h6><p>"+$.each(data[0].whosGoing, function(index, value){ (data[0].whosGoing[index] + ", ") })+" is going<p></li>";
-
-    						ul.append(li);
+    				ul.append(li);
 
 
-    					})
-    			});
+			    })
+			});
 
-        $('#clear-chosen').click(function(){
-          console.log("app.js - /restaurants - clear-chosen - .click");
+      $('#clear-chosen').click(function(){
+        console.log("app.js - /restaurants - clear-chosen - .click");
 
+        $.ajax({
+          url: '/restaurants/clear',
+          type: 'PUT'})
+        .done(function() {
+          console.log("success");
 
-          $.ajax({
-            url: '/restaurants/clear',
-            type: 'PUT'})
-          .done(function() {
-            console.log("success");
-
-               $('#stuff').empty();
-
-            });
-
-          $('#clear-chosen').hide()
-          $('#chosen-welcome').show();
+             $('#stuff').empty();
 
         });
 
-			})
+        $('#clear-chosen').hide()
+        $('#chosen-welcome').show();
 
-  	}
+      });
 
+		})
+  };
 
-    var stayLoggedIn = function(){
-      if (cookie != ""){
+  var stayLoggedIn = function(){
+    if (cookie != ""){
 
-        console.log('app.js - if (cookie != "")');
+      console.log('app.js - if (cookie != "")');
 
-        var user = {
-          id: cookie,
-        }
-        $.post('/login/cookie', user)
-          .done(function(data){
-            console.log("stayLoggedIn user: " + data.first_name);
-            returningUser(user);
-            $('#loggedInUser').html(data.first_name);
-          })
-          .fail(function(){
-            alert("app.js loginUser login failed " + user)
-          })
-
+      var user = {
+        id: cookie,
       }
-    }
+      $.post('/login/cookie', user)
+        .done(function(data){
+          console.log("stayLoggedIn user: " + data.first_name);
+          returningUser(user);
+          $('#loggedInUser').html(data.first_name);
+        })
+        .fail(function(){
+          alert("app.js loginUser login failed " + user)
+        })
 
-    stayLoggedIn()
+    }
+  }
+
+  stayLoggedIn()
 
 }); //end of everything

@@ -261,9 +261,7 @@ app.post('/login', function(req, res) {
       res.send("server.js - /login - didn't login")
 
     }
-
   });
-
 });
 
 
@@ -271,8 +269,8 @@ app.get('/users/email/:email', function(req, res){
 
   User.findOne({ 'email': req.params.email }, function(err, user){
     res.send(user);
-  });
 
+  });
 });
 
 //KEEP USER LOGGED IN VIA COOKIE
@@ -286,11 +284,8 @@ app.post('/login/cookie', function(req, res) {
       res.send(user)
 
   });
-
 });
 
-
-//
 app.get('/users/id/:id', function(req, res){
 
   console.log( "app.get(/users/id): " + req.params.id );
@@ -303,7 +298,6 @@ app.get('/users/id/:id', function(req, res){
 
 });
 
-
 ///////////////////////////////////////
 // RESTAURANT ROUTES //////////////////
 ///////////////////////////////////////
@@ -314,31 +308,35 @@ app.get('/restaurants', function(req, res){
   if (req.cookies.loggedinId != undefined){
 
     console.log("server.js - get /restaurants - worked");
-    Restaurant.find( function( err, restaurant){
-      res.send(restaurant)
-    });
 
+    Restaurant.find( function( err, restaurant){
+      var arr = {};
+      arr[restaurant[0].name] = restaurant[0].whosGoing;
+      arr[restaurant[1].name] = restaurant[1].whosGoing;
+      arr[restaurant[2].name] = restaurant[2].whosGoing;
+      arr[restaurant[3].name] = restaurant[3].whosGoing;
+      arr[restaurant[4].name] = restaurant[4].whosGoing;
+      arr[restaurant[5].name] = restaurant[5].whosGoing;
+      // console.log(arr);
+      res.send([restaurant, arr]);
+
+    });
   } else {
 
     res.send("NO STUFF FOR YOU")
 
   }
-
 });
 
 app.get('/restaurants/:id', function(req, res){
-  // Restaurant.findOne({ '_id': req.params.id}, function(err, rest)
-  // {
-    // res.send([rest, req.cookies.loggedinId]);
-    User.findOne({ '_id': req.cookies.loggedinId }, function(err, user){
-      // res.send([rest, user]);
-      Restaurant.findOneAndUpdate({ '_id': req.params.id}, { '$push': { 'whosGoing': " "+user.first_name+" "+user.last_name} }, function(err, rest){
-        res.send([rest, user]);
-      });
+
+  User.findOne({ '_id': req.cookies.loggedinId }, function(err, user){
+
+    Restaurant.findOneAndUpdate({ '_id': req.params.id}, { '$push': { 'whosGoing': " "+user.first_name+" "+user.last_name} }, function(err, rest){
+      res.send([rest, user]);
 
     });
-  // });
-
+  });
 });
 
 app.put('/restaurants/clear', function(req,res){
@@ -348,4 +346,4 @@ app.put('/restaurants/clear', function(req,res){
     });
     res.send("whoGoing cleared")
 
-})
+});
