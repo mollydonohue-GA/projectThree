@@ -160,7 +160,16 @@ header {
 }
 
 #chosen-welcome{
-    text-align: center;
+  text-align: center;
+}
+
+#clear-chosen{
+  width: 100%;
+  display: none;
+}
+
+.clear-chosen{
+  text-align: center;
 }
 
 /*-------overall restaurant list----------------------------*/
