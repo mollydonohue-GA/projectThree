@@ -2,18 +2,14 @@ console.log("loaded");
 
 $(function() {
 
-	// var mongoose = require('mongoose');
-
-	// mongoose.connect('mongodb://localhost/lunchapp');
-
-	// var User = require('./models/user');
-	// var Restaurant = require('./models/restaurant');
-
 	//make the buttons clicky
 	$('#signup-button').click(function(){ renderNewUserForm() });
 
   $('#logInAndOut').html("Log In").click(function(){ renderLogInForm() });
 
+  var cookie = (document.cookie).replace('loggedinId=', '')
+
+  console.log("cookie = " + cookie);
 
 
 //////////////////////////////////////////////////////////////////
@@ -47,12 +43,12 @@ $(function() {
 
 		var first_name = $('#first_name-input').val();
 		var last_name = $('#last_name-input').val();
-    	var email = $('#email-input').val();
+    var email = $('#email-input').val();
 		var password = $('#password-input').val();
 
 		var user = {
-	      	first_name: first_name,
-	      	last_name: last_name,
+	    first_name: first_name,
+	    last_name: last_name,
 			email: email,
 			password: password
 		}
@@ -124,11 +120,11 @@ $(function() {
 		console.log('app.js loginUser');
 
     var email = $('#email-input').val();
-	var password = $('#password-input').val();
+	  var password = $('#password-input').val();
 
     var user = {
 			email: email,
-			password: password
+			password: password,
 		}
 		$.post('/login', user)
 			.done(function(data){
@@ -141,8 +137,9 @@ $(function() {
 	};
 
 	//welcome a user after logging in
-	var returningUser = function(data)
-	{
+	var returningUser = function(data){
+
+    console.log('returning user data.id = ' + data.id);
 
 	    $('#login-div').hide();
 	    $('#pre-login').hide();
@@ -152,32 +149,40 @@ $(function() {
 	    	$('#loggedInUser').html("No one");
 		});
 
-	    if($('#logInAndOut').html() === "Log Out")
-	    {
+	    if($('#logInAndOut').html() === "Log Out"){
 	    	// console.log("It is now Log out");
 	    	$('#second-div').show();
-			$('#first-div').show();
-	    }
+			  $('#first-div').show();
+
+      }
 	    // console.log(data.email);
 
 	    // var name = "";
-
+      // set name via email
 	    $.get('/users/' + data.email, data)
-	    	.done(function(data)
-	    	{
+	    	.done(function(data){
+          console.log("get users/email data = " + data);
 	    		$('#loggedInUser').html(data.first_name);
 	    		// console.log(data.first_name);
 	    		// name = data.first_name;
 	    	})
+
+      //set name via _id
+      $.get('/users/' + data.id, data)
+        .done(function(data){
+          console.log("data =" + data);
+          $('#loggedInUser').html(data.first_name);
+          // console.log(data.first_name);
+          // name = data.first_name;
+        })
+
 
 			//get dat cookie
 			// var user = getCookie();
 			// console.log(name);
 
 	    $.get('/restaurants', data)
-			.done(function(data)
-			{
-				console.log(data);
+			.done(function(data){
 
 	    		var templateRest = Handlebars.compile($('#second-template').html());
 
@@ -187,7 +192,7 @@ $(function() {
 
           $('#first-div').append(templateChosen(data));
 
-        // let's try to put some maps on this site//////////////////////////
+        // let's try to put a map on this site//////////////////////////
         var initialize = function(){
 
           var map = new google.maps.Map(document.getElementById('rest-map'), {
@@ -214,29 +219,65 @@ $(function() {
 
         initialize()
 
-	    		$('.order').click(function(){
-	    				// console.log($(this).attr("data_id"));
-	    				$.get('/restaurants/' + $(this).attr("data_id"), data)
-	    					.done(function(data)
-	    					{
-                  $('#chosen-welcome').remove();
+    		$('.order').click(function(){
+    				// console.log($(this).attr("data_id"));
+    				$.get('/restaurants/' + $(this).attr("data_id"), data)
+    					.done(function(data)
+    					{
+                $('#chosen-welcome').remove();
 
-	    						// console.log(data);
-	    						var ul = $('#stuff');
+    						// console.log(data);
+    						var ul = $('#stuff');
 
-	    						var li = "<li>"+data[0].name+"- "+$.each(data[0].whosGoing, function(index, value){ (data[0].whosGoing[index] + ", ") })+" is going</li>";
+    						var li = "<li><h6>"+data[0].name+"</h6><p>"+$.each(data[0].whosGoing, function(index, value){ (data[0].whosGoing[index] + ", ") })+" is going<p></li>";
 
-	    						ul.append(li);
+    						ul.append(li);
 
 
-	    					})
-	    			});
+    					})
+    			});
+
+        $('#clear-chosen').click(function(){
+          console.log("app.js - /restaurants - clear-chosen - .click");
+
+          $.ajax({
+            url: '/restaurants/clear',
+            type: 'PUT'})
+          .done(function() {
+            console.log("success");
+
+               $('#stuff').empty();
+
+            });
+
+        });
 
 			})
-
 
   	}
 
 
+    var stayLoggedIn = function(){
+      if (cookie != ""){
+
+        console.log('app.js - if (cookie != "")');
+
+        var user = {
+          id: cookie,
+        }
+        $.post('/login/cookie', user)
+          .done(function(data){
+            console.log("stayLoggedIn user: " + data.first_name);
+            returningUser(user);
+            $('#loggedInUser').html(data.first_name);
+          })
+          .fail(function(){
+            alert("app.js loginUser login failed " + user)
+          })
+
+      }
+    }
+
+    stayLoggedIn()
 
 }); //end of everything

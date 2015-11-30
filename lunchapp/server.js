@@ -266,31 +266,55 @@ app.post('/login', function(req, res) {
 
 });
 
-app.get('/users/:email', function(req, res)
-{
-  User.findOne({ 'email': req.params.email }, function(err, user)
-  {
+
+app.get('/users/:email', function(req, res){
+
+  User.findOne({ 'email': req.params.email }, function(err, user){
     res.send(user);
   });
+
 });
 
-//LOG OUT
+//KEEP USER LOGGED IN VIA COOKIE
+app.post('/login/cookie', function(req, res) {
+  console.log("server.js - /login/cookie");
 
-//NEED A LOG OUT ROUTE?!?!?!
+  var id = req.body.id;
+
+  User.findOne({ '_id': id }, function( err, user){
+
+      res.send(user)
+
+  });
+
+});
+
+
+//
+app.get('/users/:id', function(req, res){
+
+  console.log( "app.get(/users/id): " + req.params.id );
+
+  User.findOne({ '_id': req.params.id }, function(err, user){
+    res.send(user);
+
+    console.log("user by id: " + user);
+  });
+
+});
+
 
 ///////////////////////////////////////
 // RESTAURANT ROUTES //////////////////
 ///////////////////////////////////////
 
 // GET ROUTE
-app.get('/restaurants', function(req, res)
-{
+app.get('/restaurants', function(req, res){
 
   if (req.cookies.loggedinId != undefined){
 
     console.log("server.js - get /restaurants - worked");
-    Restaurant.find( function( err, restaurant)
-    {
+    Restaurant.find( function( err, restaurant){
       res.send(restaurant)
     });
 
@@ -302,23 +326,25 @@ app.get('/restaurants', function(req, res)
 
 });
 
-app.get('/restaurants/:id', function(req, res)
-{
+app.get('/restaurants/:id', function(req, res){
   // Restaurant.findOne({ '_id': req.params.id}, function(err, rest)
   // {
     // res.send([rest, req.cookies.loggedinId]);
-    User.findOne({ '_id': req.cookies.loggedinId }, function(err, user)
-    {
+    User.findOne({ '_id': req.cookies.loggedinId }, function(err, user){
       // res.send([rest, user]);
-      Restaurant.findOneAndUpdate({ '_id': req.params.id}, { '$push': { 'whosGoing': " "+user.first_name+" "+user.last_name} }, function(err, rest)
-      {
+      Restaurant.findOneAndUpdate({ '_id': req.params.id}, { '$push': { 'whosGoing': " "+user.first_name+" "+user.last_name} }, function(err, rest){
         res.send([rest, user]);
       });
 
     });
   // });
 
-
-
 });
 
+app.put('/restaurants/clear', function(req,res){
+
+  Restaurant.update({}, { $set: { whosGoing: [] }}, function(err, affected){
+    console.log('affected: ', affected);
+    });
+
+})
