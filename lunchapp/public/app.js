@@ -78,6 +78,7 @@ $(function()
     		$('#loggedInUser').html("No one");
     	});
 
+
 		$('#login-div').hide();
 
     	$.get('/restaurants', data)
@@ -158,9 +159,10 @@ $(function()
 
 	    $('#login-div').hide();
 	    $('#pre-login').hide();
+
 	    $('#logInAndOut').html("Log Out").click(function()
 	    { 
-	    	Cookies.remove('loggedinId');
+		Cookies.remove('loggedinId');
 	    	$('#logInAndOut').html("Log In");
 	    	$('#loggedInUser').html("No one");
 		});
@@ -292,4 +294,3 @@ $(function()
 	}
 
 }); //end of everything
-
