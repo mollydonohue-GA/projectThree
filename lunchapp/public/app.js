@@ -1,6 +1,7 @@
 console.log("loaded");
 
-$(function() {
+$(function() 
+{
 
 	// var mongoose = require('mongoose');
 
@@ -21,7 +22,8 @@ $(function() {
 //////////////////////////////////////////////////////////////////
 
 	//render the sign up form when the signup button is clicked
-	var renderNewUserForm = function(){
+	var renderNewUserForm = function()
+	{
 
 		var $formDiv = $('#login-div');
 
@@ -41,7 +43,8 @@ $(function() {
 	};
 
 	// creates new user via POST route
-	var createUser = function(){
+	var createUser = function()
+	{
 
 		console.log('app.js createUser');
 
@@ -50,7 +53,8 @@ $(function() {
     	var email = $('#email-input').val();
 		var password = $('#password-input').val();
 
-		var user = {
+		var user = 
+		{
 	      	first_name: first_name,
 	      	last_name: last_name,
 			email: email,
@@ -62,26 +66,29 @@ $(function() {
 	};
 
 	//welcome a new user after creation
-	var newUser = function(data){
+	var newUser = function(data)
+	{
 
-    $('#login-div').hide();
-    $('#pre-login').hide();
-    $('#logInAndOut').html("Log Out").click(function(){ 
-    	Cookies.remove('loggedinId');
-    	$('#logInAndOut').html("Log In");
-    	$('#loggedInUser').html("No one");
-    });
+    	$('#login-div').hide();
+    	$('#pre-login').hide();
+    	$('#logInAndOut').html("Log Out").click(function()
+    	{ 
+    		Cookies.remove('loggedinId');
+    		$('#logInAndOut').html("Log In");
+    		$('#loggedInUser').html("No one");
+    	});
 
-	$('#login-div').hide();
+		$('#login-div').hide();
 
-    $.get('/restaurants', data)
-		.done(function(data){
+    	$.get('/restaurants', data)
+			.done(function(data)
+			{
 
-    	var template = Handlebars.compile($('#main-template').html());
+    			var template = Handlebars.compile($('#main-template').html());
 
-    	$('#main-div').append(template(data))
+    			$('#main-div').append(template(data))
 
-	   })
+	   		})
    };
 
 //////////////////////////////////////////////////////////////////
@@ -89,14 +96,15 @@ $(function() {
 //////////////////////////////////////////////////////////////////
 
 	//render the log in form when the log in button is clicked
-	var renderLogInForm = function(){
+	var renderLogInForm = function()
+	{
 
 		console.log("app.js renderLogInForm");
 
 		var $formDiv = $('#login-div');
 
-		$("#first-div").hide();
-		$("#second-div").hide();
+		$("#first-div").empty();
+		$("#second-div").empty();
 
 		$formDiv.show();
 
@@ -108,33 +116,37 @@ $(function() {
 		var template = Handlebars.compile($('#user-form').html());
 		$formDiv.append(template);
 
-    $('#names-row').hide();
+    	$('#names-row').hide();
 
-    $('#user-submit').click(function() {
+    	$('#user-submit').click(function() 
+    	{
 			console.log('app.js user-submit.click');
 			loginUser();
-			})
-			.html("Log Me In!");
+		}).html("Log Me In!");
 
 	};
 
 	// log in via POST route
-	var loginUser = function(){
+	var loginUser = function()
+	{
 
 		console.log('app.js loginUser');
 
-    var email = $('#email-input').val();
-	var password = $('#password-input').val();
+    	var email = $('#email-input').val();
+		var password = $('#password-input').val();
 
-    var user = {
+    	var user = 
+    	{
 			email: email,
 			password: password
 		}
 		$.post('/login', user)
-			.done(function(data){
-        returningUser(user);
+			.done(function(data)
+			{
+        		returningUser(user);
 			})
-			.fail(function(){
+			.fail(function()
+			{
 				alert("app.js loginUser login failed " + user.username)
 			})
 
@@ -146,7 +158,8 @@ $(function() {
 
 	    $('#login-div').hide();
 	    $('#pre-login').hide();
-	    $('#logInAndOut').html("Log Out").click(function(){ 
+	    $('#logInAndOut').html("Log Out").click(function()
+	    { 
 	    	Cookies.remove('loggedinId');
 	    	$('#logInAndOut').html("Log In");
 	    	$('#loggedInUser').html("No one");
@@ -155,8 +168,8 @@ $(function() {
 	    if($('#logInAndOut').html() === "Log Out")
 	    {
 	    	// console.log("It is now Log out");
-	    	$('#second-div').show();
-			$('#first-div').show();
+	  //   	$('#second-div').show();
+			// $('#first-div').show();
 	    }
 	    // console.log(data.email);
 
@@ -181,63 +194,102 @@ $(function() {
 
 	    		var templateRest = Handlebars.compile($('#second-template').html());
 
-	    		$('#second-div').append(templateRest(data));
+	    		$('#second-div').append(templateRest(data[0]));
 
-          var templateChosen = Handlebars.compile($('#first-template').html());
+	    		// console.log(data[0][1]._id);
 
-          $('#first-div').append(templateChosen(data));
+          		var templateChosen = Handlebars.compile($('#first-template').html());
 
-        // let's try to put some maps on this site//////////////////////////
-        var initialize = function(){
+          		$('#first-div').append(templateChosen(data[1]));
 
-          var map = new google.maps.Map(document.getElementById('rest-map'), {
-            zoom: 16,
-            streetViewControl: false,
-            mapTypeControl: false,
-            center: new google.maps.LatLng(40.741921, -73.988999),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          })
+          		console.log(data[0].id);
 
-          data.forEach( function (r){
+			    // var li = "<li>"+data[0].name+"- "+$.each(data[0].whosGoing, function(index, value){ (data[0].whosGoing[index] + ", ") })+" is going</li>";
 
-            var marker = new google.maps.Marker({
-              map: map,
-              position: {lat: r.position.lat, lng: r.position.lng},
-              title: r.name
-            });
+			    var ul = $('#stuff');
+			    var count = 0;
+			    for(key in data[1])
+			    {
+			    	if (data[1][key].length > 0) 
+			    	{
+    					// alert(key + " -> " + p[key]);
+    					// console.log(data[1][key].length);
+    					var li = "<li id=\""+data[0][count]._id+"\">"+key+":- ";
+    					for(var i = 0; i < data[1][key].length; i++)
+    					{
+    						// console.log(data[1][key][i]);
+    						if(i === data[1][key].length - 1)
+    						{
+    							li += data[1][key][i] ;
+    						}
+    						else
+    						{
+    							li += data[1][key][i] + ", ";
+    						}
+    					}
 
-          });
+    					li += " is going!</li>";
 
-        }
+    					ul.append(li);
 
-        // google.maps.event.addDomListener(window, 'load', initialize)
+    					count++;
+  					}
+			    }
 
-        initialize()
+        		// let's try to put some maps on this site//////////////////////////
+        		var initialize = function()
+        		{
 
-	    		$('.order').click(function(){
-	    				// console.log($(this).attr("data_id"));
-	    				$.get('/restaurants/' + $(this).attr("data_id"), data)
-	    					.done(function(data)
-	    					{
-                  $('#stuff').empty();
+			        var map = new google.maps.Map(document.getElementById('rest-map'), 
+			        {
+			          zoom: 16,
+			          streetViewControl: false,
+			          mapTypeControl: false,
+			          center: new google.maps.LatLng(40.741921, -73.988999),
+			          mapTypeId: google.maps.MapTypeId.ROADMAP
+			        })
 
-	    						// console.log(data);
-	    						var ul = $('#stuff');
+			        data.forEach( function (r)
+			        {
+			          var marker = new google.maps.Marker(
+			          {
+			            map: map,
+			            // position: {lat: r.position.lat, lng: r.position.lng},
+			            title: r.name
+			          })
+			        })
+			    }
+			       
 
-	    						var li = "<li>"+data[0].name+"- "+$.each(data[0].whosGoing, function(index, value){ (data[0].whosGoing[index] + ", ") })+" is going</li>";
+	        		// google.maps.event.addDomListener(window, 'load', initialize)
 
-	    						ul.append(li);
+			        initialize();
+
+			    	$('.order').click(function()
+			    	{
+			    		// console.log($(this).attr("data_id"));
+
+			    		$.get('/restaurants/' + $(this).attr("data_id"), data)
+			    			.done(function(data)
+			    			{
+		            		    // $('#stuff').empty();
+
+			    				// console.log(data);
+			    				var ul = $('#stuff');
+
+			    				$("#"+data[0]._id).remove()
+
+			    				var li = "<li>"+data[0].name+"- "+$.each(data[0].whosGoing, function(index, value){ (data[0].whosGoing[index] + ", ") })+" is going</li>";
+
+			    				ul.append(li);
 
 
-	    					})
-	    			});
+			    			})
+			    	});
+				
 
 			})
-
-
-  	}
-
-
+	}
 
 }); //end of everything
 

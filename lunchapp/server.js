@@ -291,7 +291,15 @@ app.get('/restaurants', function(req, res)
     console.log("server.js - get /restaurants - worked");
     Restaurant.find( function( err, restaurant)
     {
-      res.send(restaurant)
+      var arr = {};
+      arr[restaurant[0].name] = restaurant[0].whosGoing;
+      arr[restaurant[1].name] = restaurant[1].whosGoing;
+      arr[restaurant[2].name] = restaurant[2].whosGoing;
+      arr[restaurant[3].name] = restaurant[3].whosGoing;
+      arr[restaurant[4].name] = restaurant[4].whosGoing;
+      arr[restaurant[5].name] = restaurant[5].whosGoing;
+      // console.log(arr);
+      res.send([restaurant, arr]);
     });
 
   } else {
