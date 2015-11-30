@@ -175,12 +175,39 @@ $(function() {
 
           $('#first-div').append(templateChosen(data));
 
-	    		$('.order').click(function()
-	    			{
+        // let's try to put some maps on this site//////////////////////////
+        var initialize = function(){
+
+          var map = new google.maps.Map(document.getElementById('rest-map'), {
+            zoom: 16,
+            streetViewControl: false,
+            mapTypeControl: false,
+            center: new google.maps.LatLng(40.741921, -73.988999),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          })
+
+          data.forEach( function (r){
+
+            var marker = new google.maps.Marker({
+              map: map,
+              position: {lat: r.position.lat, lng: r.position.lng},
+              title: r.name
+            });
+
+          });
+
+        }
+
+        // google.maps.event.addDomListener(window, 'load', initialize)
+
+        initialize()
+
+	    		$('.order').click(function(){
 	    				// console.log($(this).attr("data_id"));
 	    				$.get('/restaurants/' + $(this).attr("data_id"), data)
 	    					.done(function(data)
 	    					{
+                  $('#stuff').empty();
 
 	    						// console.log(data);
 	    						var ul = $('#stuff');
@@ -191,10 +218,13 @@ $(function() {
 
 	    					})
 	    			});
+
 			})
 
-		// console.log($("#5654dacb79b17f69917614e3"));
+
   	}
+
+
 
 }); //end of everything
 

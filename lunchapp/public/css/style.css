@@ -42,9 +42,11 @@ li{
 
 button {
   margin: 4px;
-  background-color: #00BCD4;
+  border-radius: 6px;
+  background-color: #0DBCD4;
   color: #161616;
-  border: 2px solid #161616;
+  color: #FFFFFF;
+  text-shadow: 1px 1px #161616;
 }
 
 input {
@@ -78,7 +80,8 @@ header {
 .head{
   top: 62px;
   width: 100%;
-  padding: 0px 20px 0px 20px;
+  /*padding: 0px 10% 0px 10%;*/
+  margin: 0px auto 0px auto;
 }
 
 .logo {
@@ -88,7 +91,7 @@ header {
 .slogan {
   color: #FFFFFF;
   font-family: 'Lato', sans-serif;
-  font-weight: 900;
+  font-weight: 700;
   padding: 16px 0px 0px 0px;
 }
 
@@ -145,24 +148,26 @@ header {
   position: relative;
   display: block;
   margin: 0px 5% 20px 0px;
-  height: auto;
 }
 
 .chosen-list {
   padding: 10px;
   border-radius: 20px;
   background-color: #FFFFFF;
-  border-radius: 10px;
-  margin-left: 2%;
   overflow: scroll;
+  min-height: 10vh;
   max-height: 40vh;
+}
+
+.chosen-welcome{
+    text-align: center;
 }
 
 /*-------overall restaurant list----------------------------*/
 .rest{
   position: relative;
   display: block;
-  margin: 0px 5% 20px 0px;
+  margin: 0px 0px 20px 0px;
   height: auto;
 }
 
@@ -170,32 +175,27 @@ header {
   padding: 10px;
   border-radius: 20px;
   background-color: #FFFFFF;
-  border-radius: 10px;
-  margin-left: 2%;
   overflow: scroll;
-  max-height: 40vh;
+  max-height: 60vh;
 }
 
 .single-rest img{
   height: 75px;
   margin-right: 20px;
+  padding: 0px;
 }
 
-.single-rest h5, h6{
+.single-rest h4, h5, h6{
   margin: 0px;
+  padding: 0px;
 }
 
 
 /*-----map styling ----------*/
 .rest-map{
-  border: 3px solid #212121;
-  position: relative;
-  top: -40px;
-  border-radius: 10px;
-  margin: 0 auto;
-  width: 125px;
-  height: 125px;
   background-color: papayawhip;
+  border-radius: 20px;
+  height: 60vh;
 }
 
 /*-----------------------------------------*/
@@ -218,7 +218,7 @@ header {
 /*-----------------------------------------*/
 
 
-.logo a {
+.logo {
   color: #FFFFFF;
   -webkit-transition: all 0.25s;
   -moz-transition: all 0.25s;
@@ -226,13 +226,6 @@ header {
   -webkit-animation: neon 1s ease-in-out infinite alternate;
   -moz-animation: neon 1s ease-in-out infinite alternate;
   animation: neon 1s ease-in-out infinite alternate;
-}
-
-.logo a:hover {
-  color: #00BCD4;
-  -webkit-animation: none;
-  -moz-animation: none;
-  animation: none;
 }
 
 @-webkit-keyframes neon {

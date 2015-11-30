@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Warnes|Lato:400,900,400italic,700|Lobster' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Warnes|Lato:400,900,400,700italic|Lobster' rel='stylesheet' type='text/css'>
   </head>
   <body>
 
@@ -22,9 +22,9 @@
       <div class="container head">
         <div class="row">
           <div class="four columns column logo">
-            <a href="#"><h2>LunchApp</h2></a>
+            <h2>LunchApp</h2>
           </div>
-          <h6 class="four columns slogan">"Let Us Lunch!"</h6>
+          <h5 class="four columns slogan"><i>"Let Us Lunch!"</i></h5>
           <div class="four columns logged-in">
             <div class="whos-here">
               <p><strong id="loggedInUser">No one</strong> is logged in</p>
@@ -91,7 +91,7 @@
                 <h5 class="list-title">Who's lunching where?</h5>
                 <div class="chosen-list">
                   <ul id="stuff">
-
+                    <li> <h5 class="chosen-welcome">Choose a place to lunch!<h5></li>
                   </ul>
                 </div>
               </div>
@@ -101,37 +101,40 @@
             <template id="second-template">
               <div class="eleven columns rest">
                 <h5 class="list-title">Where should I lunch?</h5>
-                <div class="rest-list">
-                  <ul id="restaurants">
-                    {{#each this}}
-                    <li>
+                <div class="row">
+                  <div class="nine columns rest-list">
+                    <ul id="restaurants">
+                      {{#each this}}
+                      <li>
+
                          <div class="row single-rest">
-                           <div class="five columns">
+                           <div class="six columns">
                              <a href="{{this.urlRestaurant}}" target="_blank" ><h4>{{this.name}}</h4></a>
-                           </div>
-                           <div class="four columns">
-                             <button class="order" data_id="{{_id}}">I want {{this.name}} for lunch</button>
-                           </div>
-                         </div>
-                         <div class="row single-rest">
-                           <div class="five columns">
                              <h6>{{this.foodType}}</h6><br>
                              <h5>{{this.crossStreet}}</h5>
                            </div>
-                           <div class="five columns">
+                           <div class="six columns">
                              <a href="{{this.urlMenu}}" target="_blank" title="Menu"><img src="images/menu.svg"></a>
                              <a href="{{this.urlOnline}}" target="_blank" title="Order Online"><img src="images/order_online.svg"></a>
                              <a href="#" target="_blank" title="{{this.phone}}"><img src="images/order_phone.svg"></a>
+                             <br>
+                             <button class="order" data_id="{{_id}}">I want {{this.name}} for lunch</button>
                            </div>
-                           <div id="{{this._id}}-rest-map" class="two columns rest-map"></div>
                          </div>
-                         <hr>
-                       </li>
 
-                    {{/each}}
-                  </ul>
+                        <hr>
+                      </li>
+
+                      {{/each}}
+                    </ul>
+                  </div>
+
+                  <div id="rest-map" class="three columns rest-map"></div>
+
                 </div>
+
               </div>
+
             </template>
           </div>
 
@@ -142,6 +145,7 @@
 
     <!-- </div> backstrip -->
 
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script type="text/javascript" src="app.js">
     </script>
   </body>
