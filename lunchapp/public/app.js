@@ -12,7 +12,7 @@ $(function() {
 	//make the buttons clicky
 	$('#signup-button').click(function(){ renderNewUserForm() });
 
-  $('#logInAndOut').click(function(){ renderLogInForm() });
+  $('#logInAndOut').html("Log In").click(function(){ renderLogInForm() });
 
 
 
@@ -47,12 +47,12 @@ $(function() {
 
 		var first_name = $('#first_name-input').val();
 		var last_name = $('#last_name-input').val();
-    var email = $('#email-input').val();
+    	var email = $('#email-input').val();
 		var password = $('#password-input').val();
 
 		var user = {
-      first_name: first_name,
-      last_name: last_name,
+	      	first_name: first_name,
+	      	last_name: last_name,
 			email: email,
 			password: password
 		}
@@ -66,16 +66,20 @@ $(function() {
 
     $('#login-div').hide();
     $('#pre-login').hide();
-    $('#logInAndOut').html("Log Out").click(function(){ Cookies.remove('loggedinId') });
+    $('#logInAndOut').html("Log Out").click(function(){ 
+    	Cookies.remove('loggedinId');
+    	$('#logInAndOut').html("Log In");
+    	$('#loggedInUser').html("No one");
+    });
 
-		$('#login-div').hide();
+	$('#login-div').hide();
 
     $.get('/restaurants', data)
-			.done(function(data){
+		.done(function(data){
 
-    		var template = Handlebars.compile($('#main-template').html());
+    	var template = Handlebars.compile($('#main-template').html());
 
-    		$('#main-div').append(template(data))
+    	$('#main-div').append(template(data))
 
 	   })
    };
@@ -91,10 +95,13 @@ $(function() {
 
 		var $formDiv = $('#login-div');
 
+		$("#first-div").hide();
+		$("#second-div").hide();
+
 		$formDiv.show();
 
 		$('.form').empty();
-    $('#blurb').hide();
+    	$('#blurb').hide();
 		$('#signup-button').html("Wait, I need to sign up first!").show();
 
 
@@ -140,12 +147,17 @@ $(function() {
 	    $('#login-div').hide();
 	    $('#pre-login').hide();
 	    $('#logInAndOut').html("Log Out").click(function(){ 
-	    	Cookies.remove('loggedinId')
-	    	
-	  //   	.$('#second-div').hide(),
-			// .$('#first-div').hide(),
+	    	Cookies.remove('loggedinId');
+	    	$('#logInAndOut').html("Log In");
+	    	$('#loggedInUser').html("No one");
 		});
 
+	    if($('#logInAndOut').html() === "Log Out")
+	    {
+	    	// console.log("It is now Log out");
+	    	$('#second-div').show();
+			$('#first-div').show();
+	    }
 	    // console.log(data.email);
 
 	    // var name = "";
@@ -211,7 +223,8 @@ $(function() {
 
 	    						// console.log(data);
 	    						var ul = $('#stuff');
-	    						var li = "<li>" + data[0].name + " - " + data[0].whosGoing + " is going</li>";
+
+	    						var li = "<li>"+data[0].name+"- "+$.each(data[0].whosGoing, function(index, value){ (data[0].whosGoing[index] + ", ") })+" is going</li>";
 
 	    						ul.append(li);
 
