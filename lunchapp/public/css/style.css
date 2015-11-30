@@ -165,6 +165,7 @@ header {
 
 #clear-chosen{
   width: 100%;
+  display: none;
 }
 
 .clear-chosen{

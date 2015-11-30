@@ -9,8 +9,6 @@ $(function() {
 
   var cookie = (document.cookie).replace('loggedinId=', '')
 
-  console.log("cookie = " + cookie);
-
 
 //////////////////////////////////////////////////////////////////
 ////////////////////SIGN UP///////////////////////////////////////
@@ -53,32 +51,9 @@ $(function() {
 			password: password
 		}
 		$.post('/users', user)
-			.done(newUser);
+			.done(returningUser);
 
 	};
-
-	//welcome a new user after creation
-	var newUser = function(data){
-
-    $('#login-div').hide();
-    $('#pre-login').hide();
-    $('#logInAndOut').html("Log Out").click(function(){
-    	Cookies.remove('loggedinId');
-    	$('#logInAndOut').html("Log In");
-    	$('#loggedInUser').html("No one");
-    });
-
-	$('#login-div').hide();
-
-    $.get('/restaurants', data)
-		.done(function(data){
-
-    	var template = Handlebars.compile($('#main-template').html());
-
-    	$('#main-div').append(template(data))
-
-	   })
-   };
 
 //////////////////////////////////////////////////////////////////
 ////////////////////LOG IN////////////////////////////////////////
@@ -97,7 +72,7 @@ $(function() {
 		$formDiv.show();
 
 		$('.form').empty();
-    	$('#blurb').hide();
+    $('#blurb').hide();
 		$('#signup-button').html("Wait, I need to sign up first!").show();
 
 
@@ -135,8 +110,9 @@ $(function() {
 			})
 
 	};
-
-	//welcome a user after logging in
+/////////////////////////////////////////////////////////////////////////
+//welcome a user after logging in////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
 	var returningUser = function(data){
 
     console.log('returning user data.id = ' + data.id);
@@ -144,9 +120,9 @@ $(function() {
 	    $('#login-div').hide();
 	    $('#pre-login').hide();
 	    $('#logInAndOut').html("Log Out").click(function(){
-	    	Cookies.remove('loggedinId');
 	    	$('#logInAndOut').html("Log In");
 	    	$('#loggedInUser').html("No one");
+        $('#signup-button').show()
 		});
 
 	    if($('#logInAndOut').html() === "Log Out"){
@@ -159,16 +135,15 @@ $(function() {
 
 	    // var name = "";
       // set name via email
-	    $.get('/users/' + data.email, data)
+	    $.get('/users/email/' + data.email, data)
 	    	.done(function(data){
-          console.log("get users/email data = " + data);
 	    		$('#loggedInUser').html(data.first_name);
 	    		// console.log(data.first_name);
 	    		// name = data.first_name;
 	    	})
 
       //set name via _id
-      $.get('/users/' + data.id, data)
+      $.get('/users/id/' + data.id, data)
         .done(function(data){
           console.log("data =" + data);
           $('#loggedInUser').html(data.first_name);
@@ -221,10 +196,13 @@ $(function() {
 
     		$('.order').click(function(){
     				// console.log($(this).attr("data_id"));
+
+            $('#clear-chosen').show()
+
     				$.get('/restaurants/' + $(this).attr("data_id"), data)
     					.done(function(data)
     					{
-                $('#chosen-welcome').remove();
+                $('#chosen-welcome').hide();
 
     						// console.log(data);
     						var ul = $('#stuff');
@@ -240,6 +218,7 @@ $(function() {
         $('#clear-chosen').click(function(){
           console.log("app.js - /restaurants - clear-chosen - .click");
 
+
           $.ajax({
             url: '/restaurants/clear',
             type: 'PUT'})
@@ -249,6 +228,9 @@ $(function() {
                $('#stuff').empty();
 
             });
+
+          $('#clear-chosen').hide()
+          $('#chosen-welcome').show();
 
         });
 

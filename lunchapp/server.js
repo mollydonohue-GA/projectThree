@@ -60,7 +60,7 @@ var Restaurant = require('./models/restaurant')
 
 // //////////////////Schnippers
 // var schnippers = new Restaurant({
-//   name: "Schnipper’s Quality Kitchen",
+//   name: "Schnipper’s",
 //   foodType: "American",
 //   phone: "(212) 233-1025",
 //   urlRestaurant: "http://www.schnippers.com/",
@@ -111,7 +111,7 @@ var Restaurant = require('./models/restaurant')
 // var WokToWalk = new Restaurant({
 //   name: "Wok to Walk",
 //   foodType: "Asian Fusion",
-//   phone: "6469187006",
+//   phone: "(646) 918-7006",
 //   urlRestaurant: "http://woktowalk.com/",
 //   urlMenu: "http://woktowalk.com/our-menu/",
 //   urlOnline: "http://woktowalk.com/union-square-east-order-line/",
@@ -135,7 +135,7 @@ var Restaurant = require('./models/restaurant')
 // var sweetgreen = new Restaurant({
 //   name: "Sweet Green",
 //   foodType: "Salad",
-//   phone: "6464498884",
+//   phone: "(646) 449-8884",
 //   urlRestaurant: "http://sweetgreen.com/",
 //   urlMenu: "https://order.sweetgreen.com/nomad/menu",
 //   urlOnline: "https://order.sweetgreen.com/nomad/menu",
@@ -159,7 +159,7 @@ var Restaurant = require('./models/restaurant')
 // var oxido = new Restaurant({
 //   name: "Oxido",
 //   foodType: "Mexican",
-//   phone: "2122561072",
+//   phone: "(212) 256-1072",
 //   urlRestaurant: "http://www.oxido.nyc/",
 //   urlMenu: "http://www.oxido.nyc/menu/",
 //   urlOnline: "https://oxido.alohaorderonline.com/",
@@ -267,7 +267,7 @@ app.post('/login', function(req, res) {
 });
 
 
-app.get('/users/:email', function(req, res){
+app.get('/users/email/:email', function(req, res){
 
   User.findOne({ 'email': req.params.email }, function(err, user){
     res.send(user);
@@ -291,7 +291,7 @@ app.post('/login/cookie', function(req, res) {
 
 
 //
-app.get('/users/:id', function(req, res){
+app.get('/users/id/:id', function(req, res){
 
   console.log( "app.get(/users/id): " + req.params.id );
 
@@ -343,8 +343,9 @@ app.get('/restaurants/:id', function(req, res){
 
 app.put('/restaurants/clear', function(req,res){
 
-  Restaurant.update({}, { $set: { whosGoing: [] }}, function(err, affected){
+  Restaurant.update({}, { $set: { whosGoing: [] }}, { multi: true }, function(err, affected){
     console.log('affected: ', affected);
     });
+    res.send("whoGoing cleared")
 
 })

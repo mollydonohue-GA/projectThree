@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>LunchApp</title>
+    <title>CraigsLunch</title>
 
 <!---SCRIPTS --------------------------------------------->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -22,7 +22,7 @@
       <div class="container head">
         <div class="row">
           <div class="four columns column logo">
-            <h2>LunchApp</h2>
+            <h2>CraigsLunch</h2>
           </div>
           <h5 class="four columns slogan"><i>"Let Us Lunch!"</i></h5>
           <div class="four columns logged-in">
@@ -45,7 +45,7 @@
         <div id="pre-login" class="row">
           <div id="signup" class="six columns offset-by-two login-blurb">
             <div id="blurb">
-              <h5>Simply the easiest way to coordinate the who, what, where of lunch.</h5>
+              <h5>Simply the easiest way to coordinate the who, what, and where of lunch.</h5>
             </div>
 
             <button id="signup-button">sign up</a>
@@ -90,8 +90,8 @@
               <div class="eleven columns chosen">
                 <h5 class="list-title">Who's lunching where?</h5>
                 <div class="chosen-list">
+                  <h5 id="chosen-welcome">Choose a place to lunch!</h5>
                   <ul id="stuff">
-                    <li id="chosen-welcome"> <h5>Choose a place to lunch!<h5></li>
                   </ul>
                   <div class="clear-chosen">
                     <button id="clear-chosen">CLEAR ALL</button>
@@ -121,7 +121,7 @@
                              <a href="{{this.urlOnline}}" target="_blank" title="Order Online"><img src="images/order_online.svg"></a>
                              <a href="#" target="_blank" title="{{this.phone}}"><img src="images/order_phone.svg"></a>
                              <br>
-                             <button class="order" data_id="{{_id}}">I want {{this.name}} for lunch</button>
+                             <button class="order" data_id="{{_id}}">I'm going to {{this.name}}</button>
                            </div>
                          </div>
 
