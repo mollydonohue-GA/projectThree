@@ -174,10 +174,10 @@ $(function() {
         var initialize = function(){
 
           var map = new google.maps.Map(document.getElementById('rest-map'), {
-            zoom: 15,
+            zoom: 16,
             streetViewControl: false,
             mapTypeControl: false,
-            center: new google.maps.LatLng(40.741121, -73.988999),
+            center: new google.maps.LatLng(40.741921, -73.988999),
             mapTypeId: google.maps.MapTypeId.ROADMAP
           })
 
@@ -202,6 +202,7 @@ $(function() {
 	    				$.get('/restaurants/' + $(this).attr("data_id"), data)
 	    					.done(function(data)
 	    					{
+                  $('#stuff').empty();
 
 	    						// console.log(data);
 	    						var ul = $('#stuff');

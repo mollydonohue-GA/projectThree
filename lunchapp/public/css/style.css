@@ -159,6 +159,10 @@ header {
   max-height: 40vh;
 }
 
+.chosen-welcome{
+    text-align: center;
+}
+
 /*-------overall restaurant list----------------------------*/
 .rest{
   position: relative;
