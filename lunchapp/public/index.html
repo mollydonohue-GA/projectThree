@@ -8,6 +8,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.4/js.cookie.js"></script>
+
 <!---CSS STYLING and FONTS ------------------------------->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
@@ -15,6 +16,7 @@
     <link href='https://fonts.googleapis.com/css?family=Warnes|Lato:400,900,400italic,700|Lobster' rel='stylesheet' type='text/css'>
   </head>
   <body>
+
 <!---HEADER ----------------------------------------------->
     <header>
       <div class="container head">
@@ -38,13 +40,12 @@
 
       <div class="body-container row">
 
-  <!---LOG IN FORM -------------------------------------->
+<!---LOG IN FORM -------------------------------------->
 
         <div id="pre-login" class="row">
           <div id="signup" class="six columns offset-by-two login-blurb">
             <div id="blurb">
-              <h4>Welcome to LunchApp!</h4>
-              <p>Here is a welcome blurb written by Czar Molly.</p>
+              <h5>Simply the easiest way to coordinate the who, what, where of lunch.</h5>
             </div>
 
             <button id="signup-button">sign up</a>
@@ -61,7 +62,7 @@
                     <input type="text" id="first_name-input" placeholder="First Name">
                   </div>
                   <div class="two columns offset-by-two">
-                    <input type="text" id="last_name-input" placeholder="last name">
+                    <input type="text" id="last_name-input" placeholder="Last Name">
                   </div>
                 </div>
 
@@ -83,14 +84,14 @@
           </div>
 
 
-  <!---MAIN CONTAINER ( SHOWS AFTER LOGIN )----------------------->
+<!---MAIN CONTAINER ( SHOWS AFTER LOGIN )----------------------->
           <div id="first-div">
             <template id="first-template">
               <div class="eleven columns chosen">
                 <h5 class="list-title">Who's lunching where?</h5>
                 <div class="chosen-list">
                   <ul id="stuff">
-                    
+
                   </ul>
                 </div>
               </div>
@@ -103,17 +104,37 @@
                 <div class="rest-list">
                   <ul id="restaurants">
                     {{#each this}}
-                      <li>
-                        {{this.name}}
-                        <button class="order" data_id="{{_id}}" >Order Now!</button>
-                      </li>
+                    <li>
+                         <div class="row single-rest">
+                           <div class="five columns">
+                             <a href="{{this.urlRestaurant}}" target="_blank" ><h4>{{this.name}}</h4></a>
+                           </div>
+                           <div class="four columns">
+                             <button class="order" data_id="{{_id}}">I want {{this.name}} for lunch</button>
+                           </div>
+                         </div>
+                         <div class="row single-rest">
+                           <div class="five columns">
+                             <h6>{{this.foodType}}</h6><br>
+                             <h5>{{this.crossStreet}}</h5>
+                           </div>
+                           <div class="five columns">
+                             <a href="{{this.urlMenu}}" target="_blank" title="Menu"><img src="images/menu.svg"></a>
+                             <a href="{{this.urlOnline}}" target="_blank" title="Order Online"><img src="images/order_online.svg"></a>
+                             <a href="#" target="_blank" title="{{this.phone}}"><img src="images/order_phone.svg"></a>
+                           </div>
+                           <div id="{{this._id}}-rest-map" class="two columns rest-map"></div>
+                         </div>
+                         <hr>
+                       </li>
+
                     {{/each}}
                   </ul>
                 </div>
               </div>
             </template>
           </div>
-          
+
       </div>
       <!-- <div class="foot">
         <p>Lovingly Lunched at <a href="https://generalassemb.ly/" target="_blank">General Assembly</a> by Team Oberyn</p>

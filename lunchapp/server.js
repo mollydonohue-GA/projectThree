@@ -58,56 +58,7 @@ var Restaurant = require('./models/restaurant')
 // SEEDS //////////////////////////////
 ///////////////////////////////////////
 
-///////////////// Wok to Walk
-// var WokToWalk = new Restaurant({
-//   name: "Wok to Walk",
-//   foodType: "Asian Fusion",
-//   phone: "646-918-7006",
-//   urlRestaurant: "http://woktowalk.com/",
-//   urlMenu: "http://woktowalk.com/our-menu/",
-//   urlOnline: "http://woktowalk.com/union-square-east-order-line/",
-//   crossStreet: "South Park Ave and 17th St",
-//   position: {
-//     lat: "40.736210",
-//     lng: "73.988966"
-//   },
-//   orderOnline: true,
-//   seating: true,
-//   whosGoing: []
-// });
-
-
-// ///////////////// OXIDO
-// WokToWalk.save(function(err)
-// {
-//     if(err) console.log(err);
-//     console.log(WokToWalk.name + " created");
-// })
-
-// var oxido = new Restaurant({
-//   name: "Oxido",
-//   foodType: "Mexican",
-//   phone: "(212) 256-1072",
-//   urlRestaurant: "http://www.oxido.nyc/",
-//   urlMenu: "http://www.oxido.nyc/menu/",
-//   urlOnline: "https://oxido.alohaorderonline.com/",
-//   crossStreet: "23rd St and 5th Ave",
-//   position: {
-//     lat: "40.742085",
-//     lng: "-73.989918"
-//   },
-//   orderOnline: true,
-//   seating: true,
-//   whosGoing: []
-
-// });
-
-// oxido.save(function(err)
-// {
-//     if(err) console.log(err);
-//     console.log(oxido.name + " created");
-// });
-
+// //////////////////Schnippers
 // var schnippers = new Restaurant({
 //   name: "Schnipper’s Quality Kitchen",
 //   foodType: "American",
@@ -131,6 +82,7 @@ var Restaurant = require('./models/restaurant')
 //     console.log(schnippers.name + " created");
 // });
 
+// ////////////////////////21 Berry Deli
 // var berryDeli = new Restaurant({
 //   name: "21 Berry Deli Inc.",
 //   foodType: "Deli",
@@ -172,13 +124,13 @@ var Restaurant = require('./models/restaurant')
 //   seating: true,
 //   whosGoing: []
 // })
-//
+
 // WokToWalk.save(function(err)
 // {
 //     if(err) console.log(err);
 //     console.log(WokToWalk.name + "created");
 // })
-//
+
 // ///////////////// SWEET GREEN
 // var sweetgreen = new Restaurant({
 //   name: "Sweet Green",
@@ -196,13 +148,13 @@ var Restaurant = require('./models/restaurant')
 //   seating: true,
 //   whosGoing: []
 // })
-//
+
 // sweetgreen.save(function(err)
 // {
 //     if(err) console.log(err);
 //     console.log(sweetgreen.name + "created");
 // })
-//
+
 // ///////////////// OXIDO
 // var oxido = new Restaurant({
 //   name: "Oxido",
@@ -219,15 +171,15 @@ var Restaurant = require('./models/restaurant')
 //   orderOnline: true,
 //   seating: true,
 //   whosGoing: []
-//
+
 // })
-//
+
 // oxido.save(function(err)
 // {
 //     if(err) console.log(err);
 //     console.log(oxido.name + "created");
 // })
-//
+
 
 // ///////////////// INDIKITCH
 // var indikitch = new Restaurant({
@@ -358,7 +310,7 @@ app.get('/restaurants/:id', function(req, res)
     User.findOne({ '_id': req.cookies.loggedinId }, function(err, user)
     {
       // res.send([rest, user]);
-      Restaurant.findOneAndUpdate({ '_id': req.params.id}, { '$push': { 'whosGoing': user.first_name } }, function(err, rest)
+      Restaurant.findOneAndUpdate({ '_id': req.params.id}, { '$push': { 'whosGoing': " "+user.first_name+" "+user.last_name} }, function(err, rest)
       {
         res.send([rest, user]);
       });
