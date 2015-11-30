@@ -66,7 +66,7 @@ $(function() {
 
     $('#login-div').hide();
     $('#pre-login').hide();
-    $('#logInAndOut').html("Log Out").click(function(){ 
+    $('#logInAndOut').html("Log Out").click(function(){
     	Cookies.remove('loggedinId');
     	$('#logInAndOut').html("Log In");
     	$('#loggedInUser').html("No one");
@@ -146,7 +146,7 @@ $(function() {
 
 	    $('#login-div').hide();
 	    $('#pre-login').hide();
-	    $('#logInAndOut').html("Log Out").click(function(){ 
+	    $('#logInAndOut').html("Log Out").click(function(){
 	    	Cookies.remove('loggedinId');
 	    	$('#logInAndOut').html("Log In");
 	    	$('#loggedInUser').html("No one");
@@ -219,7 +219,7 @@ $(function() {
 	    				$.get('/restaurants/' + $(this).attr("data_id"), data)
 	    					.done(function(data)
 	    					{
-                  $('#stuff').empty();
+                  $('#chosen-welcome').remove();
 
 	    						// console.log(data);
 	    						var ul = $('#stuff');
@@ -240,4 +240,3 @@ $(function() {
 
 
 }); //end of everything
-
