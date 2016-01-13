@@ -69,7 +69,7 @@ $(function() {
 
 		$('#login-div').hide();
 
-    	$.get('/restaurants', data)
+    	$.get('/(restaurants)', data)
 			.done(function(data){
 
     			var template = Handlebars.compile($('#main-template').html());
@@ -228,11 +228,11 @@ $(function() {
           mapTypeId: google.maps.MapTypeId.ROADMAP
         })
 
-        data.forEach( function (r){
+        data[0].forEach( function (r){
           var marker = new google.maps.Marker(
           {
             map: map,
-            // position: {lat: r.position.lat, lng: r.position.lng},
+            position: {lat: r.position.lat, lng: r.position.lng},
             title: r.name
           })
         })
