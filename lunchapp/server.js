@@ -22,9 +22,9 @@ app.use(cookieParser());
 app.listen( port );
 
 // DATABASE
-mongoose.connect('mongodb://localhost/lunchapp');
-// var mongoUri =  process.env.MONGOLAB_URI || 'mongodb://localhost/lunchapp';
-// mongoose.connect(mongoUri);
+// mongoose.connect('mongodb://localhost/lunchapp');
+var mongoUri =  process.env.MONGOLAB_URI || 'mongodb://localhost/lunchapp';
+mongoose.connect(mongoUri);
 
 // YELP
 // var yelp = new Yelp({
