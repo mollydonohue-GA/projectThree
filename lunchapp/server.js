@@ -232,7 +232,6 @@ app.post('/users', function(req, res) {
       res.send({
         id: user.id,
         username: user.username,
-
       });
     };
   });
