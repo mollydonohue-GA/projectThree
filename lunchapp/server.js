@@ -222,18 +222,22 @@ app.post('/users', function(req, res) {
     password: password_hash
   });
 
-  user.save(function(err) {
-    if(err) {
+  user.save(function(err) 
+  {
+    if(err) 
+    {
       console.log(err);
-    } else {
+    } else 
+    {
 
       res.cookie("loggedinId", user.id)
 
-      res.send({
+      res.send(
+      {
         id: user.id,
-        username: user.username,
+        username: user.username
       });
-    };
+    }
   });
 });
 
